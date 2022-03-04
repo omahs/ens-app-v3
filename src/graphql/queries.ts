@@ -67,6 +67,7 @@ export const GET_SINGLE_NAME = gql`
       registrant
       isNewRegistrar
       isDNSRegistrar
+      isWrapped
       dnsOwner
     }
   }

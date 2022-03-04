@@ -1,6 +1,7 @@
 const nextJest = require("next/jest");
+const path = require("path");
 
-const createJestConfig = nextJest({ dir: "." });
+const createJestConfig = nextJest({ dir: "./" });
 
 const customJestConfig = {
   testEnvironment: "jest-environment-jsdom",
@@ -11,10 +12,7 @@ const customJestConfig = {
     "!**/.yarn/**",
     "!**/.next/**",
     "!**/cypress",
-  ],
-  testMatch: [
-    "<rootDir>/__tests__/**/?(*.)+(spec|test).[jt]s?(x)",
-    "<rootDir>/src/**/?(*.)+(spec|test).[jt]s?(x)",
+    "!**/test-environment/**",
   ],
   moduleNameMapper: {
     // Handle image imports
@@ -28,11 +26,13 @@ const customJestConfig = {
     "<rootDir>/.yarn/",
     "<rootDir>/.next/",
     "<rootDir>/cypress/",
+    "<rootDir>/test-environment/",
   ],
   transformIgnorePatterns: [
     "/node_modules/",
     "/.yarn/",
     "/.next/",
+    "/test-environment/",
     "^.+\\.module\\.(css|sass|scss)$",
     "cypress",
     ".storybook",
@@ -50,6 +50,7 @@ const customJestConfig = {
     "/node_modules/",
     "/.yarn/",
     "/.next/",
+    "/test-environment/",
     "^.+\\.module\\.(css|sass|scss)$",
     "cypress",
 

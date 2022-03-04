@@ -2324,7 +2324,7 @@ __metadata:
 
 "@ensdomains/ui@patch:@ensdomains/ui@3.3.14#./patches/@ensdomains/ui.patch::locator=ens-app-v2%40workspace%3A.":
   version: 3.3.14
-  resolution: "@ensdomains/ui@patch:@ensdomains/ui@npm%3A3.3.14#./patches/@ensdomains/ui.patch::version=3.3.14&hash=9412b9&locator=ens-app-v2%40workspace%3A."
+  resolution: "@ensdomains/ui@patch:@ensdomains/ui@npm%3A3.3.14#./patches/@ensdomains/ui.patch::version=3.3.14&hash=1f2452&locator=ens-app-v2%40workspace%3A."
   dependencies:
     "@0xproject/utils": ^2.0.2
     "@babel/plugin-proposal-class-properties": ^7.8.3
@@ -2349,7 +2349,7 @@ __metadata:
     lodash: ^4.17.11
     node-fetch: ^2.6.1
     web3: ^1.3.0
-  checksum: 51d08a5796a3866f2bb4e553194656f75f21b616f84cbff83103b28088a7df18db6f2151399accb11edecc294ae9da90ee17dad8d88dee7635aff3c4d8e20be7
+  checksum: 043f1bfa5265c8ef7758ef85ec96d5d6ac1b81ba659d3bbbc7d625e7bad83f7da587aab4d9882f669a034dff4305765b78dbf8fd676db8194332f3a4bb4d3437
   languageName: node
   linkType: hard
 

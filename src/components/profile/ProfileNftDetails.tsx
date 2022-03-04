@@ -112,6 +112,37 @@ export const ProfileNftDetails = ({
 }) => {
   const [nftLoading, setNftLoading] = useState(true);
   const { t: tc } = useTranslation("common");
+  const data = [
+    ...(expiryDate && [
+      {
+        label: tc("name.expires"),
+        type: "text",
+        value: `${expiryDate.toLocaleDateString(undefined, {
+          month: "long",
+        })} ${expiryDate.getDate()}, ${expiryDate.getFullYear()}`,
+      },
+    ]),
+    ...(domain.isWrapped
+      ? [
+          {
+            label: tc("name.owner"),
+            type: "address",
+            value: domain.owner,
+          },
+        ]
+      : [
+          {
+            label: tc("name.registrant"),
+            type: "address",
+            value: domain.registrant,
+          },
+          {
+            label: tc("name.controller"),
+            type: "address",
+            value: domain.owner,
+          },
+        ]),
+  ];
 
   return (
     <Box>
@@ -126,29 +157,7 @@ export const ProfileNftDetails = ({
       </StyledNftBox>
       <Box marginTop="4">
         <Stack>
-          {[
-            ...[
-              expiryDate
-                ? {
-                    label: tc("name.expires"),
-                    type: "text",
-                    value: `${expiryDate.toLocaleDateString(undefined, {
-                      month: "long",
-                    })} ${expiryDate.getDate()}, ${expiryDate.getFullYear()}`,
-                  }
-                : null,
-            ],
-            {
-              label: tc("name.registrant"),
-              type: "address",
-              value: domain.registrant,
-            },
-            {
-              label: tc("name.controller"),
-              type: "address",
-              value: domain.owner,
-            },
-          ].map(
+          {data.map(
             (item, inx, arr) =>
               item && (
                 <Fragment key={item.label}>

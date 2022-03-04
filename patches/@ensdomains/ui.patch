@@ -1,3 +1,1140 @@
+diff --git a/abis/nameWrapper.json b/abis/nameWrapper.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5e140cde50b59fffb852669392dbd4058c3e8596
+--- /dev/null
++++ b/abis/nameWrapper.json
+@@ -0,0 +1,1131 @@
++{
++  "contractName": "NameWrapper",
++  "abi": [
++    {
++      "inputs": [
++        {
++          "internalType": "contract ENS",
++          "name": "_ens",
++          "type": "address"
++        },
++        {
++          "internalType": "contract BaseRegistrar",
++          "name": "_registrar",
++          "type": "address"
++        },
++        {
++          "internalType": "contract IMetadataService",
++          "name": "_metadataService",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "constructor"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "account",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "operator",
++          "type": "address"
++        },
++        {
++          "indexed": false,
++          "internalType": "bool",
++          "name": "approved",
++          "type": "bool"
++        }
++      ],
++      "name": "ApprovalForAll",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "controller",
++          "type": "address"
++        },
++        {
++          "indexed": false,
++          "internalType": "bool",
++          "name": "active",
++          "type": "bool"
++        }
++      ],
++      "name": "ControllerChanged",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint96",
++          "name": "fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "FusesBurned",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "indexed": false,
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        }
++      ],
++      "name": "NameUnwrapped",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "indexed": false,
++          "internalType": "bytes",
++          "name": "name",
++          "type": "bytes"
++        },
++        {
++          "indexed": false,
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint96",
++          "name": "fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "NameWrapped",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "previousOwner",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "newOwner",
++          "type": "address"
++        }
++      ],
++      "name": "OwnershipTransferred",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "operator",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "from",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "to",
++          "type": "address"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint256[]",
++          "name": "ids",
++          "type": "uint256[]"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint256[]",
++          "name": "values",
++          "type": "uint256[]"
++        }
++      ],
++      "name": "TransferBatch",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "operator",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "from",
++          "type": "address"
++        },
++        {
++          "indexed": true,
++          "internalType": "address",
++          "name": "to",
++          "type": "address"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint256",
++          "name": "id",
++          "type": "uint256"
++        },
++        {
++          "indexed": false,
++          "internalType": "uint256",
++          "name": "value",
++          "type": "uint256"
++        }
++      ],
++      "name": "TransferSingle",
++      "type": "event"
++    },
++    {
++      "anonymous": false,
++      "inputs": [
++        {
++          "indexed": false,
++          "internalType": "string",
++          "name": "value",
++          "type": "string"
++        },
++        {
++          "indexed": true,
++          "internalType": "uint256",
++          "name": "id",
++          "type": "uint256"
++        }
++      ],
++      "name": "URI",
++      "type": "event"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "uint256",
++          "name": "",
++          "type": "uint256"
++        }
++      ],
++      "name": "_tokens",
++      "outputs": [
++        {
++          "internalType": "uint256",
++          "name": "",
++          "type": "uint256"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "uint96",
++          "name": "fuseMask",
++          "type": "uint96"
++        }
++      ],
++      "name": "allFusesBurned",
++      "outputs": [
++        {
++          "internalType": "bool",
++          "name": "",
++          "type": "bool"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "account",
++          "type": "address"
++        },
++        {
++          "internalType": "uint256",
++          "name": "id",
++          "type": "uint256"
++        }
++      ],
++      "name": "balanceOf",
++      "outputs": [
++        {
++          "internalType": "uint256",
++          "name": "",
++          "type": "uint256"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address[]",
++          "name": "accounts",
++          "type": "address[]"
++        },
++        {
++          "internalType": "uint256[]",
++          "name": "ids",
++          "type": "uint256[]"
++        }
++      ],
++      "name": "balanceOfBatch",
++      "outputs": [
++        {
++          "internalType": "uint256[]",
++          "name": "",
++          "type": "uint256[]"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "burnFuses",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "name": "controllers",
++      "outputs": [
++        {
++          "internalType": "bool",
++          "name": "",
++          "type": "bool"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [],
++      "name": "ens",
++      "outputs": [
++        {
++          "internalType": "contract ENS",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "uint256",
++          "name": "tokenId",
++          "type": "uint256"
++        }
++      ],
++      "name": "getData",
++      "outputs": [
++        {
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        },
++        {
++          "internalType": "uint96",
++          "name": "fuses",
++          "type": "uint96"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        }
++      ],
++      "name": "getFuses",
++      "outputs": [
++        {
++          "internalType": "uint96",
++          "name": "fuses",
++          "type": "uint96"
++        },
++        {
++          "internalType": "enum INameWrapper.NameSafety",
++          "name": "vulnerability",
++          "type": "uint8"
++        },
++        {
++          "internalType": "bytes32",
++          "name": "vulnerableNode",
++          "type": "bytes32"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "account",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "operator",
++          "type": "address"
++        }
++      ],
++      "name": "isApprovedForAll",
++      "outputs": [
++        {
++          "internalType": "bool",
++          "name": "",
++          "type": "bool"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "addr",
++          "type": "address"
++        }
++      ],
++      "name": "isTokenOwnerOrApproved",
++      "outputs": [
++        {
++          "internalType": "bool",
++          "name": "",
++          "type": "bool"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [],
++      "name": "metadataService",
++      "outputs": [
++        {
++          "internalType": "contract IMetadataService",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "",
++          "type": "bytes32"
++        }
++      ],
++      "name": "names",
++      "outputs": [
++        {
++          "internalType": "bytes",
++          "name": "",
++          "type": "bytes"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "to",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "",
++          "type": "address"
++        },
++        {
++          "internalType": "uint256",
++          "name": "tokenId",
++          "type": "uint256"
++        },
++        {
++          "internalType": "bytes",
++          "name": "data",
++          "type": "bytes"
++        }
++      ],
++      "name": "onERC721Received",
++      "outputs": [
++        {
++          "internalType": "bytes4",
++          "name": "",
++          "type": "bytes4"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [],
++      "name": "owner",
++      "outputs": [
++        {
++          "internalType": "address",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "uint256",
++          "name": "id",
++          "type": "uint256"
++        }
++      ],
++      "name": "ownerOf",
++      "outputs": [
++        {
++          "internalType": "address",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "string",
++          "name": "label",
++          "type": "string"
++        },
++        {
++          "internalType": "address",
++          "name": "wrappedOwner",
++          "type": "address"
++        },
++        {
++          "internalType": "uint256",
++          "name": "duration",
++          "type": "uint256"
++        },
++        {
++          "internalType": "address",
++          "name": "resolver",
++          "type": "address"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "registerAndWrapETH2LD",
++      "outputs": [
++        {
++          "internalType": "uint256",
++          "name": "expires",
++          "type": "uint256"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [],
++      "name": "registrar",
++      "outputs": [
++        {
++          "internalType": "contract BaseRegistrar",
++          "name": "",
++          "type": "address"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "uint256",
++          "name": "labelHash",
++          "type": "uint256"
++        },
++        {
++          "internalType": "uint256",
++          "name": "duration",
++          "type": "uint256"
++        }
++      ],
++      "name": "renew",
++      "outputs": [
++        {
++          "internalType": "uint256",
++          "name": "expires",
++          "type": "uint256"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [],
++      "name": "renounceOwnership",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "from",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "to",
++          "type": "address"
++        },
++        {
++          "internalType": "uint256[]",
++          "name": "ids",
++          "type": "uint256[]"
++        },
++        {
++          "internalType": "uint256[]",
++          "name": "amounts",
++          "type": "uint256[]"
++        },
++        {
++          "internalType": "bytes",
++          "name": "data",
++          "type": "bytes"
++        }
++      ],
++      "name": "safeBatchTransferFrom",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "from",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "to",
++          "type": "address"
++        },
++        {
++          "internalType": "uint256",
++          "name": "id",
++          "type": "uint256"
++        },
++        {
++          "internalType": "uint256",
++          "name": "amount",
++          "type": "uint256"
++        },
++        {
++          "internalType": "bytes",
++          "name": "data",
++          "type": "bytes"
++        }
++      ],
++      "name": "safeTransferFrom",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "operator",
++          "type": "address"
++        },
++        {
++          "internalType": "bool",
++          "name": "approved",
++          "type": "bool"
++        }
++      ],
++      "name": "setApprovalForAll",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "controller",
++          "type": "address"
++        },
++        {
++          "internalType": "bool",
++          "name": "active",
++          "type": "bool"
++        }
++      ],
++      "name": "setController",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "contract IMetadataService",
++          "name": "_newMetadataService",
++          "type": "address"
++        }
++      ],
++      "name": "setMetadataService",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "resolver",
++          "type": "address"
++        },
++        {
++          "internalType": "uint64",
++          "name": "ttl",
++          "type": "uint64"
++        }
++      ],
++      "name": "setRecord",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "resolver",
++          "type": "address"
++        }
++      ],
++      "name": "setResolver",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "parentNode",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "bytes32",
++          "name": "label",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        }
++      ],
++      "name": "setSubnodeOwner",
++      "outputs": [
++        {
++          "internalType": "bytes32",
++          "name": "",
++          "type": "bytes32"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "parentNode",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "string",
++          "name": "label",
++          "type": "string"
++        },
++        {
++          "internalType": "address",
++          "name": "newOwner",
++          "type": "address"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "setSubnodeOwnerAndWrap",
++      "outputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        }
++      ],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "parentNode",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "bytes32",
++          "name": "label",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "owner",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "resolver",
++          "type": "address"
++        },
++        {
++          "internalType": "uint64",
++          "name": "ttl",
++          "type": "uint64"
++        }
++      ],
++      "name": "setSubnodeRecord",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "parentNode",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "string",
++          "name": "label",
++          "type": "string"
++        },
++        {
++          "internalType": "address",
++          "name": "newOwner",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "resolver",
++          "type": "address"
++        },
++        {
++          "internalType": "uint64",
++          "name": "ttl",
++          "type": "uint64"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "setSubnodeRecordAndWrap",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "node",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "uint64",
++          "name": "ttl",
++          "type": "uint64"
++        }
++      ],
++      "name": "setTTL",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes4",
++          "name": "interfaceId",
++          "type": "bytes4"
++        }
++      ],
++      "name": "supportsInterface",
++      "outputs": [
++        {
++          "internalType": "bool",
++          "name": "",
++          "type": "bool"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "address",
++          "name": "newOwner",
++          "type": "address"
++        }
++      ],
++      "name": "transferOwnership",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "parentNode",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "bytes32",
++          "name": "label",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "newController",
++          "type": "address"
++        }
++      ],
++      "name": "unwrap",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes32",
++          "name": "label",
++          "type": "bytes32"
++        },
++        {
++          "internalType": "address",
++          "name": "newRegistrant",
++          "type": "address"
++        },
++        {
++          "internalType": "address",
++          "name": "newController",
++          "type": "address"
++        }
++      ],
++      "name": "unwrapETH2LD",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "uint256",
++          "name": "tokenId",
++          "type": "uint256"
++        }
++      ],
++      "name": "uri",
++      "outputs": [
++        {
++          "internalType": "string",
++          "name": "",
++          "type": "string"
++        }
++      ],
++      "stateMutability": "view",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "bytes",
++          "name": "name",
++          "type": "bytes"
++        },
++        {
++          "internalType": "address",
++          "name": "wrappedOwner",
++          "type": "address"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "wrap",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    },
++    {
++      "inputs": [
++        {
++          "internalType": "string",
++          "name": "label",
++          "type": "string"
++        },
++        {
++          "internalType": "address",
++          "name": "wrappedOwner",
++          "type": "address"
++        },
++        {
++          "internalType": "uint96",
++          "name": "_fuses",
++          "type": "uint96"
++        }
++      ],
++      "name": "wrapETH2LD",
++      "outputs": [],
++      "stateMutability": "nonpayable",
++      "type": "function"
++    }
++  ],
++  "bytecode": "0x60c06040523480156200001157600080fd5b5060405162004ab138038062004ab1833981016040819052620000349162000338565b6200003f3362000160565b6001600160601b0319606084811b821660805283901b1660a052600480546001600160a01b0383166001600160a01b03199091161790556200009460008051602062004a9183398151915260006041620001b0565b620000a36000806041620001b0565b604080518082019091526001815260006020808301828152918052600590529051620000f1917f05b8ccbb9d4d8fb16ea74ce3c29a41f1b461fbdaff4714a0d9a8eb05499746bc9162000292565b50604080518082019091526005808252626cae8d60e31b602080840191825260008051602062004a9183398151915260005291909152905162000156917fd99130487705d6970718a0cee91984b61956f8a1db3482bba7e6bf0131adb01f9162000292565b50505050620003e1565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6001600160601b0381161580620001c957506001811615155b620002405760405162461bcd60e51b815260206004820152603760248201527f4e616d65577261707065723a2043616e6e6f74206275726e2066757365733a2060448201527f646f6d61696e2063616e20626520756e77726170706564000000000000000000606482015260840160405180910390fd5b620002588383836200025d60201b620026911760201c565b505050565b60a0816001600160601b0316901b826001600160a01b0316176001600085815260200190815260200160002081905550505050565b828054620002a0906200038b565b90600052602060002090601f016020900481019282620002c457600085556200030f565b82601f10620002df57805160ff19168380011785556200030f565b828001600101855582156200030f579182015b828111156200030f578251825591602001919060010190620002f2565b506200031d92915062000321565b5090565b5b808211156200031d576000815560010162000322565b6000806000606084860312156200034d578283fd5b83516200035a81620003c8565b60208501519093506200036d81620003c8565b60408501519092506200038081620003c8565b809150509250925092565b600181811c90821680620003a057607f821691505b60208210811415620003c257634e487b7160e01b600052602260045260246000fd5b50919050565b6001600160a01b0381168114620003de57600080fd5b50565b60805160601c60a05160601c6145e3620004ae6000396000818161038901528181610a8801528181610bf1015281816119ac01528181611ac601528181611d2501528181611dc601528181611e7101528181611faf0152818161212901526131870152600081816103ee0152818161076f0152818161087e01528181610a0e01528181610d3b015281816114790152818161153c01528181611635015281816116c5015281816117eb01528181611b810152818161224f01528181612e46015261324f01526145e36000f3fe608060405234801561001057600080fd5b506004361061023c5760003560e01c80636352211e1161013b578063c475abff116100b8578063e985e9c51161007c578063e985e9c5146105d9578063ed70554d146105ec578063f242432a1461060c578063f2fde38b1461061f578063f44779b91461063257600080fd5b8063c475abff1461056a578063cf4088231461057d578063d8c9921a14610590578063da8c229e146105a3578063e0dba60f146105c657600080fd5b8063a0a5a738116100ff578063a0a5a738146104ea578063a22cb465146104fd578063a456f7d814610510578063bce9a0fa14610544578063c1cbf66f1461055757600080fd5b80636352211e1461048b57806363f03326146104ab578063715018a6146104be5780638b4dfa75146104c65780638da5cb5b146104d957600080fd5b806320c38e2b116101c95780634ac07f411161018d5780634ac07f41146104105780634e1273f41461043257806353095467146104525780635de201b1146104655780635ef2c7f01461047857600080fd5b806320c38e2b146103715780632b20e397146103845780632eb2c2d6146103c357806331ea1cf9146103d65780633f15457f146103e957600080fd5b80630e89341c116102105780630e89341c146102ea57806314ab90381461030a578063150b7a021461031f5780631534e1771461034b5780631896f70a1461035e57600080fd5b8062fdd58e146102415780630178fe3f1461026757806301ffc9a7146102b457806306ab5923146102d7575b600080fd5b61025461024f36600461392c565b610645565b6040519081526020015b60405180910390f35b61028d610275366004613a35565b6000908152600160205260409020549060a082901c90565b604080516001600160a01b0390931683526001600160601b0390911660208301520161025e565b6102c76102c2366004613cdf565b6106ef565b604051901515815260200161025e565b6102546102e5366004613b1a565b610714565b6102fd6102f8366004613a35565b610908565b60405161025e919061409a565b61031d610318366004613c92565b61098b565b005b61033261032d366004613829565b610a7b565b6040516001600160e01b0319909116815260200161025e565b61031d610359366004613710565b610c6b565b61031d61036c366004613a65565b610cb7565b6102fd61037f366004613a35565b610d6a565b6103ab7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200161025e565b61031d6103d1366004613780565b610e04565b61031d6103e4366004613ba1565b611087565b6103ab7f000000000000000000000000000000000000000000000000000000000000000081565b61042361041e366004613a35565b611194565b60405161025e93929190614338565b610445610440366004613957565b6112af565b60405161025e9190614059565b6004546103ab906001600160a01b031681565b61031d610473366004613d17565b611410565b61031d610486366004613b47565b61166c565b6103ab610499366004613a35565b60009081526001602052604090205490565b6102546104b9366004613c31565b611854565b61031d6118eb565b61031d6104d4366004613a89565b611921565b6000546001600160a01b03166103ab565b6102546104f8366004613d6f565b611a0e565b61031d61050b3660046138ff565b611beb565b6102c761051e366004613cbd565b6000918252600160205260409091205460a01c81166001600160601b0390811691161490565b61031d610552366004613d17565b611cc2565b61031d610565366004613cbd565b612014565b610254610578366004613eda565b6120dd565b61031d61058b366004613aca565b6121b4565b61031d61059e366004613b1a565b6122b5565b6102c76105b1366004613710565b60036020526000908152604090205460ff1681565b61031d6105d43660046138ff565b61237c565b6102c76105e7366004613748565b612406565b6102546105fa366004613a35565b60016020526000908152604090205481565b61031d61061a366004613899565b612434565b61031d61062d366004613710565b6125b3565b6102c7610640366004613a65565b61264e565b60006001600160a01b0383166106b65760405162461bcd60e51b815260206004820152602b60248201527f455243313135353a2062616c616e636520717565727920666f7220746865207a60448201526a65726f206164647265737360a81b60648201526084015b60405180910390fd5b6000828152600160205260409020546001600160a01b0380821690851614156106e35760019150506106e9565b60009150505b92915050565b60006001600160e01b0319821663c47b9cb160e01b14806106e957506106e9826126c6565b600083610721813361264e565b61073d5760405162461bcd60e51b81526004016106ad90614208565b8484600061074b8383612716565b6040516302571be360e01b8152600481018290529091506000906001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906302571be39060240160206040518083038186803b1580156107b157600080fd5b505afa1580156107c5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107e9919061372c565b60008581526001602052604090205490915060a01c6001600160a01b038216158015610816575060208116155b8061083557506001600160a01b03821615801590610835575060408116155b6108515760405162461bcd60e51b81526004016106ad90614179565b6040516306ab592360e01b8152600481018b9052602481018a90526001600160a01b0389811660448301527f000000000000000000000000000000000000000000000000000000000000000016906306ab592390606401602060405180830381600087803b1580156108c257600080fd5b505af11580156108d6573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108fa9190613a4d565b9a9950505050505050505050565b600480546040516303a24d0760e21b81529182018390526060916001600160a01b0390911690630e89341c9060240160006040518083038186803b15801561094f57600080fd5b505afa158015610963573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526106e99190810190613ded565b81610996813361264e565b6109b25760405162461bcd60e51b81526004016106ad90614208565b600083815260016020526040902054839060109060a01c808216156109e95760405162461bcd60e51b81526004016106ad90614179565b604051630295720760e31b8152600481018790526001600160401b03861660248201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906314ab9038906044015b600060405180830381600087803b158015610a5b57600080fd5b505af1158015610a6f573d6000803e3d6000fd5b50505050505050505050565b6000336001600160a01b037f00000000000000000000000000000000000000000000000000000000000000001614610b1b5760405162461bcd60e51b815260206004820152603e60248201527f4e616d65577261707065723a2057726170706572206f6e6c7920737570706f7260448201527f7473202e6574682045524337323120746f6b656e207472616e7366657273000060648201526084016106ad565b60008080610b2b85870187613e6a565b8251602084012092955090935091508714610bc55760405162461bcd60e51b815260206004820152604e60248201527f4e616d65577261707065723a20546f6b656e20696420646f6573206d6174636860448201527f206b656363616b286c6162656c29206f66206c6162656c2070726f766964656460648201526d081a5b8819185d1848199a595b1960921b608482015260a4016106ad565b6000610bd2848484612742565b604051630a3b53db60e21b8152600481018290523060248201529091507f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906328ed4f6c90604401600060405180830381600087803b158015610c3d57600080fd5b505af1158015610c51573d6000803e3d6000fd5b50630a85bd0160e11b9d9c50505050505050505050505050565b6000546001600160a01b03163314610c955760405162461bcd60e51b81526004016106ad906142a6565b600480546001600160a01b0319166001600160a01b0392909216919091179055565b81610cc2813361264e565b610cde5760405162461bcd60e51b81526004016106ad90614208565b600083815260016020526040902054839060089060a01c80821615610d155760405162461bcd60e51b81526004016106ad90614179565b604051630c4b7b8560e11b8152600481018790526001600160a01b0386811660248301527f00000000000000000000000000000000000000000000000000000000000000001690631896f70a90604401610a41565b60056020526000908152604090208054610d8390614405565b80601f0160208091040260200160405190810160405280929190818152602001828054610daf90614405565b8015610dfc5780601f10610dd157610100808354040283529160200191610dfc565b820191906000526020600020905b815481529060010190602001808311610ddf57829003601f168201915b505050505081565b8151835114610e665760405162461bcd60e51b815260206004820152602860248201527f455243313135353a2069647320616e6420616d6f756e7473206c656e677468206044820152670dad2e6dac2e8c6d60c31b60648201526084016106ad565b6001600160a01b038416610e8c5760405162461bcd60e51b81526004016106ad906141c3565b6001600160a01b038516331480610ea85750610ea88533612406565b610f0f5760405162461bcd60e51b815260206004820152603260248201527f455243313135353a207472616e736665722063616c6c6572206973206e6f74206044820152711bdddb995c881b9bdc88185c1c1c9bdd995960721b60648201526084016106ad565b60005b835181101561101a576000848281518110610f3d57634e487b7160e01b600052603260045260246000fd5b602002602001015190506000848381518110610f6957634e487b7160e01b600052603260045260246000fd5b60200260200101519050600080610f92846000908152600160205260409020549060a082901c90565b91509150610fa1816004161590565b610fbd5760405162461bcd60e51b81526004016106ad906142db565b826001148015610fde5750896001600160a01b0316826001600160a01b0316145b610ffa5760405162461bcd60e51b81526004016106ad9061425c565b611005848a836127df565b50505050806110139061446c565b9050610f12565b50836001600160a01b0316856001600160a01b0316336001600160a01b03167f4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb868660405161106a92919061406c565b60405180910390a4611080338686868686612879565b5050505050565b60008686604051611099929190613f61565b604051809103902090506110b0888230878761166c565b600061118788888080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201829052508e8152600560205260409020805490935061110492509050614405565b80601f016020809104026020016040519081016040528092919081815260200182805461113090614405565b801561117d5780601f106111525761010080835404028352916020019161117d565b820191906000526020600020905b81548152906001019060200180831161116057829003601f168201915b50505050506129ec565b9050610a6f818785612a6d565b60008181526005602052604081208054829182918291906111b490614405565b80601f01602080910402602001604051908101604052809291908181526020018280546111e090614405565b801561122d5780601f106112025761010080835404028352916020019161122d565b820191906000526020600020905b81548152906001019060200180831161121057829003601f168201915b5050505050905060008151116112855760405162461bcd60e51b815260206004820152601b60248201527f4e616d65577261707065723a204e616d65206e6f7420666f756e64000000000060448201526064016106ad565b611290816000612b65565b6000978852600160205260409097205460a01c97909695509350505050565b606081518351146113145760405162461bcd60e51b815260206004820152602960248201527f455243313135353a206163636f756e747320616e6420696473206c656e677468604482015268040dad2e6dac2e8c6d60bb1b60648201526084016106ad565b600083516001600160401b0381111561133d57634e487b7160e01b600052604160045260246000fd5b604051908082528060200260200182016040528015611366578160200160208202803683370190505b50905060005b8451811015611408576113cd85828151811061139857634e487b7160e01b600052603260045260246000fd5b60200260200101518583815181106113c057634e487b7160e01b600052603260045260246000fd5b6020026020010151610645565b8282815181106113ed57634e487b7160e01b600052603260045260246000fd5b60209081029190910101526114018161446c565b905061136c565b509392505050565b600061145585858080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250879250869150612a6d9050565b6040516302571be360e01b8152600481018290529091506000906001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906302571be39060240160206040518083038186803b1580156114bb57600080fd5b505afa1580156114cf573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906114f3919061372c565b90506001600160a01b03811633148061151157506115118133612406565b806115b6575060405163e985e9c560e01b81526001600160a01b0382811660048301523360248301527f0000000000000000000000000000000000000000000000000000000000000000169063e985e9c59060440160206040518083038186803b15801561157e57600080fd5b505afa158015611592573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906115b69190613a19565b6116195760405162461bcd60e51b815260206004820152602e60248201527f4e616d65577261707065723a20446f6d61696e206973206e6f74206f776e656460448201526d10313c903a34329039b2b73232b960911b60648201526084016106ad565b604051635b0fc9c360e01b8152600481018390523060248201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031690635b0fc9c390604401610a41565b84611677813361264e565b6116935760405162461bcd60e51b81526004016106ad90614208565b858560006116a18383612716565b6040516302571be360e01b8152600481018290529091506000906001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906302571be39060240160206040518083038186803b15801561170757600080fd5b505afa15801561171b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061173f919061372c565b60008581526001602052604090205490915060a01c6001600160a01b03821615801561176c575060208116155b8061178b57506001600160a01b0382161580159061178b575060408116155b6117a75760405162461bcd60e51b81526004016106ad90614179565b6040516305ef2c7f60e41b8152600481018c9052602481018b90526001600160a01b038a8116604483015289811660648301526001600160401b03891660848301527f00000000000000000000000000000000000000000000000000000000000000001690635ef2c7f09060a401600060405180830381600087803b15801561182f57600080fd5b505af1158015611843573d6000803e3d6000fd5b505050505050505050505050505050565b6000808585604051611867929190613f61565b6040518091039020905061187c878230610714565b915060006118d287878080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201829052508d8152600560205260409020805490935061110492509050614405565b90506118df818686612a6d565b50505095945050505050565b6000546001600160a01b031633146119155760405162461bcd60e51b81526004016106ad906142a6565b61191f6000612c6e565b565b61193960008051602061458e83398151915284612716565b611943813361264e565b61195f5760405162461bcd60e51b81526004016106ad90614208565b61198061197a60008051602061458e83398151915286612716565b83612cbe565b6040516323b872dd60e01b81523060048201526001600160a01b038481166024830152604482018690527f000000000000000000000000000000000000000000000000000000000000000016906323b872dd90606401600060405180830381600087803b1580156119f057600080fd5b505af1158015611a04573d6000803e3d6000fd5b5050505050505050565b3360009081526003602052604081205460ff16611a3d5760405162461bcd60e51b81526004016106ad90614131565b6000611a8288888080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152508a92508791506127429050565b90506000611a9e60008051602061458e83398151915283612716565b604051633f2891eb60e21b8152600481018490523060248201526044810188905290915082907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063fca247ac90606401602060405180830381600087803b158015611b1257600080fd5b505af1158015611b26573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611b4a9190613a4d565b93506001600160a01b03861615611bde57604051630c4b7b8560e11b8152600481018390526001600160a01b0387811660248301527f00000000000000000000000000000000000000000000000000000000000000001690631896f70a90604401600060405180830381600087803b158015611bc557600080fd5b505af1158015611bd9573d6000803e3d6000fd5b505050505b5050509695505050505050565b336001600160a01b0383161415611c565760405162461bcd60e51b815260206004820152602960248201527f455243313135353a2073657474696e6720617070726f76616c20737461747573604482015268103337b91039b2b63360b91b60648201526084016106ad565b3360008181526002602090815260408083206001600160a01b03871680855290835292819020805460ff191686151590811790915590519081529192917f17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31910160405180910390a35050565b6000611d0785858080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152508792508691506127429050565b6040516331a9108f60e11b81526004810182905290915081906000907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031690636352211e9060240160206040518083038186803b158015611d6f57600080fd5b505afa158015611d83573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611da7919061372c565b604051630a3b53db60e21b8152600481018590523060248201529091507f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906328ed4f6c90604401600060405180830381600087803b158015611e1257600080fd5b505af1158015611e26573d6000803e3d6000fd5b505050506001600160a01b038116331480611e465750611e468133612406565b80611eeb575060405163e985e9c560e01b81526001600160a01b0382811660048301523360248301527f0000000000000000000000000000000000000000000000000000000000000000169063e985e9c59060440160206040518083038186803b158015611eb357600080fd5b505afa158015611ec7573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611eeb9190613a19565b611f835760405162461bcd60e51b815260206004820152605f60248201527f4e616d65577261707065723a2053656e646572206973206e6f74206f776e657260448201527f206f7220617574686f726973656420627920746865206f776e6572206f72206160648201527f7574686f7269736564206f6e20746865202e6574682072656769737472617200608482015260a4016106ad565b6040516323b872dd60e01b81526001600160a01b038281166004830152306024830152604482018490527f000000000000000000000000000000000000000000000000000000000000000016906323b872dd90606401600060405180830381600087803b158015611ff357600080fd5b505af1158015612007573d6000803e3d6000fd5b5050505050505050505050565b8161201f813361264e565b61203b5760405162461bcd60e51b81526004016106ad90614208565b600083815260016020526040902054839060029060a01c808216156120725760405162461bcd60e51b81526004016106ad90614179565b60008681526001602052604090205460a081901c8681176120948984836127df565b6040516001600160601b038216815289907fdba54097f6f5ef606cfe6bd170d2a04c0601dff6d94274d5f3879349978b9f449060200160405180910390a2505050505050505050565b3360009081526003602052604081205460ff1661210c5760405162461bcd60e51b81526004016106ad90614131565b60405163c475abff60e01b815260048101849052602481018390527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063c475abff90604401602060405180830381600087803b15801561217557600080fd5b505af1158015612189573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906121ad9190613a4d565b9392505050565b836121bf813361264e565b6121db5760405162461bcd60e51b81526004016106ad90614208565b6000858152600160205260409020548590601c9060a01c808216156122125760405162461bcd60e51b81526004016106ad90614179565b60405163cf40882360e01b8152600481018990526001600160a01b03888116602483015287811660448301526001600160401b03871660648301527f0000000000000000000000000000000000000000000000000000000000000000169063cf40882390608401600060405180830381600087803b15801561229357600080fd5b505af11580156122a7573d6000803e3d6000fd5b505050505050505050505050565b6122bf8383612716565b6122c9813361264e565b6122e55760405162461bcd60e51b81526004016106ad90614208565b60008051602061458e8339815191528414156123695760405162461bcd60e51b815260206004820152603d60248201527f4e616d65577261707065723a202e657468206e616d6573206d7573742062652060448201527f756e77726170706564207769746820756e77726170455448324c44282900000060648201526084016106ad565b61237661197a8585612716565b50505050565b6000546001600160a01b031633146123a65760405162461bcd60e51b81526004016106ad906142a6565b6001600160a01b038216600081815260036020908152604091829020805460ff191685151590811790915591519182527f4c97694570a07277810af7e5669ffd5f6a2d6b74b6e9a274b8b870fd5114cf8791015b60405180910390a25050565b6001600160a01b03918216600090815260026020908152604080832093909416825291909152205460ff1690565b6001600160a01b03841661245a5760405162461bcd60e51b81526004016106ad906141c3565b6001600160a01b03851633148061247657506124768533612406565b6124d45760405162461bcd60e51b815260206004820152602960248201527f455243313135353a2063616c6c6572206973206e6f74206f776e6572206e6f7260448201526808185c1c1c9bdd995960ba1b60648201526084016106ad565b60008381526001602052604090205460a081901c60048116156125095760405162461bcd60e51b81526004016106ad906142db565b83600114801561252a5750866001600160a01b0316826001600160a01b0316145b6125465760405162461bcd60e51b81526004016106ad9061425c565b6125518587836127df565b60408051868152602081018690526001600160a01b0380891692908a169133917fc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62910160405180910390a46125aa338888888888612edd565b50505050505050565b6000546001600160a01b031633146125dd5760405162461bcd60e51b81526004016106ad906142a6565b6001600160a01b0381166126425760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b60648201526084016106ad565b61264b81612c6e565b50565b6000828152600160205260408120546001600160a01b038316906001600160a01b031614806121ad57506000838152600160205260409020546121ad9083612406565b60a0816001600160601b0316901b826001600160a01b0316176001600085815260200190815260200160002081905550505050565b60006001600160e01b03198216636cdb3d1360e11b14806126f757506001600160e01b031982166303a24d0760e21b145b806106e957506301ffc9a760e01b6001600160e01b03198316146106e9565b604080516020808201949094528082019290925280518083038201815260609092019052805191012090565b82516020840120600061276360008051602061458e83398151915283612716565b9050600061278c86604051806040016040528060058152602001626cae8d60e31b8152506129ec565b905061279a82828787612fa7565b817fe4119808efe03fb44c25cc9ce9a945dfe95dc48b05cdf4a351b586630c1e6b6a8287876040516127ce939291906140ad565b60405180910390a250509392505050565b6001600160601b03811615806127f757506001811615155b6128695760405162461bcd60e51b815260206004820152603760248201527f4e616d65577261707065723a2043616e6e6f74206275726e2066757365733a2060448201527f646f6d61696e2063616e20626520756e7772617070656400000000000000000060648201526084016106ad565b612874838383612691565b505050565b6001600160a01b0384163b156129e45760405163bc197c8160e01b81526001600160a01b0385169063bc197c81906128bd9089908990889088908890600401613fb6565b602060405180830381600087803b1580156128d757600080fd5b505af1925050508015612907575060408051601f3d908101601f1916820190925261290491810190613cfb565b60015b6129b4576129136144b3565b806308c379a0141561294d57506129286144cb565b80612933575061294f565b8060405162461bcd60e51b81526004016106ad919061409a565b505b60405162461bcd60e51b815260206004820152603460248201527f455243313135353a207472616e7366657220746f206e6f6e20455243313135356044820152732932b1b2b4bb32b91034b6b83632b6b2b73a32b960611b60648201526084016106ad565b6001600160e01b0319811663bc197c8160e01b146125aa5760405162461bcd60e51b81526004016106ad906140e9565b505050505050565b6060610100835110612a405760405162461bcd60e51b815260206004820152601b60248201527f4e616d65577261707065723a204c6162656c20746f6f206c6f6e67000000000060448201526064016106ad565b82518383604051602001612a5693929190613f71565b604051602081830303815290604052905092915050565b60008080612a7b8682613030565b90925090506000612a8c87836130f5565b905060008051602061458e833981519152811415612b075760405162461bcd60e51b815260206004820152603260248201527f4e616d65577261707065723a202e65746820646f6d61696e73206e65656420746044820152716f207573652077726170455448324c44282960701b60648201526084016106ad565b612b118184612716565b9350612b1f84888888612fa7565b837fe4119808efe03fb44c25cc9ce9a945dfe95dc48b05cdf4a351b586630c1e6b6a888888604051612b53939291906140ad565b60405180910390a25050509392505050565b600080808080612b758787613030565b909250905081612b91575060009350839250829150612c679050565b6000612b9d8883612b65565b90965094509050612bae8184612716565b95506000856004811115612bd257634e487b7160e01b600052602160045260246000fd5b14612bdf57505050612c67565b80612bf4575060009350839250612c67915050565b612bff838783613158565b90955093506000856004811115612c2657634e487b7160e01b600052602160045260246000fd5b14612c3357505050612c67565b600081815260016020526040908190205460a01c811614612c5c57600394509250612c67915050565b506000935083925050505b9250925092565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6001600160a01b038116612d245760405162461bcd60e51b815260206004820152602760248201527f4e616d65577261707065723a20546172676574206f776e65722063616e6e6f746044820152660206265203078360cc1b60648201526084016106ad565b6001600160a01b038116301415612da35760405162461bcd60e51b815260206004820152603c60248201527f4e616d65577261707065723a20546172676574206f776e65722063616e6e6f7460448201527f20626520746865204e616d655772617070657220636f6e74726163740000000060648201526084016106ad565b60008281526001602081905260409091205460a01c81161415612e175760405162461bcd60e51b815260206004820152602660248201527f4e616d65577261707065723a20446f6d61696e206973206e6f7420756e777261604482015265707061626c6560d01b60648201526084016106ad565b612e20826132e6565b604051635b0fc9c360e01b8152600481018390526001600160a01b0382811660248301527f00000000000000000000000000000000000000000000000000000000000000001690635b0fc9c390604401600060405180830381600087803b158015612e8a57600080fd5b505af1158015612e9e573d6000803e3d6000fd5b50506040516001600160a01b03841681528492507fee2ba1195c65bcf218a83d874335c6bf9d9067b4c672f3c3bf16cf40de7586c491506020016123fa565b6001600160a01b0384163b156129e45760405163f23a6e6160e01b81526001600160a01b0385169063f23a6e6190612f219089908990889088908890600401614014565b602060405180830381600087803b158015612f3b57600080fd5b505af1925050508015612f6b575060408051601f3d908101601f19168201909252612f6891810190613cfb565b60015b612f77576129136144b3565b6001600160e01b0319811663f23a6e6160e01b146125aa5760405162461bcd60e51b81526004016106ad906140e9565b60008481526005602090815260409091208451612fc692860190613525565b506000848152600160205260409020546001600160a01b0381161561302557612fee856132e6565b6040516000815285907fee2ba1195c65bcf218a83d874335c6bf9d9067b4c672f3c3bf16cf40de7586c49060200160405180910390a25b611080858484613350565b600080835183106130835760405162461bcd60e51b815260206004820152601e60248201527f726561644c6162656c3a20496e646578206f7574206f6620626f756e6473000060448201526064016106ad565b60008484815181106130a557634e487b7160e01b600052603260045260246000fd5b016020015160f81c905080156130d1576130ca856130c48660016143c1565b83613501565b92506130d6565b600092505b6130e081856143c1565b6130eb9060016143c1565b9150509250929050565b60008060006131048585613030565b90925090508161311a5750600091506106e99050565b61312485826130f5565b6040805160208101929092528101839052606001604051602081830303815290604052805190602001209250505092915050565b60008060008051602061458e83398151915283141561322f576040516331a9108f60e11b8152600481018690527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031690636352211e9060240160206040518083038186803b1580156131d157600080fd5b505afa925050508015613201575060408051601f3d908101601f191682019092526131fe9181019061372c565b60015b613210575060049050826132de565b6001600160a01b038116301461322d5760018592509250506132de565b505b6040516302571be360e01b81526004810185905230906001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906302571be39060240160206040518083038186803b15801561329157600080fd5b505afa1580156132a5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906132c9919061372c565b6001600160a01b0316146132de575060029050825b935093915050565b6000818152600160205260408120549050613303826000806127df565b60408051838152600160208201526000916001600160a01b0384169133917fc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62910160405180910390a45050565b60008381526001602052604090205483906001600160a01b038116156133b85760405162461bcd60e51b815260206004820152601f60248201527f455243313135353a206d696e74206f66206578697374696e6720746f6b656e0060448201526064016106ad565b6001600160a01b0384166134185760405162461bcd60e51b815260206004820152602160248201527f455243313135353a206d696e7420746f20746865207a65726f206164647265736044820152607360f81b60648201526084016106ad565b6001600160a01b03841630141561348e5760405162461bcd60e51b815260206004820152603460248201527f455243313135353a206e65774f776e65722063616e6e6f74206265207468652060448201527313985b5955dc985c1c195c8818dbdb9d1c9858dd60621b60648201526084016106ad565b6134998285856127df565b60408051838152600160208201526001600160a01b0386169160009133917fc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62910160405180910390a46110803360008685600160405180602001604052806000815250612edd565b825160009061351083856143c1565b111561351b57600080fd5b5091016020012090565b82805461353190614405565b90600052602060002090601f0160209004810192826135535760008555613599565b82601f1061356c57805160ff1916838001178555613599565b82800160010185558215613599579182015b8281111561359957825182559160200191906001019061357e565b506135a59291506135a9565b5090565b5b808211156135a557600081556001016135aa565b60006135c98361439a565b6040516135d68282614440565b8092508481528585850111156135eb57600080fd5b8484602083013760006020868301015250509392505050565b600082601f830112613614578081fd5b8135602061362182614377565b60405161362e8282614440565b8381528281019150858301600585901b8701840188101561364d578586fd5b855b8581101561366b5781358452928401929084019060010161364f565b5090979650505050505050565b60008083601f840112613689578182fd5b5081356001600160401b0381111561369f578182fd5b6020830191508360208285010111156136b757600080fd5b9250929050565b600082601f8301126136ce578081fd5b6121ad838335602085016135be565b80356001600160401b03811681146136f457600080fd5b919050565b80356001600160601b03811681146136f457600080fd5b600060208284031215613721578081fd5b81356121ad81614554565b60006020828403121561373d578081fd5b81516121ad81614554565b6000806040838503121561375a578081fd5b823561376581614554565b9150602083013561377581614554565b809150509250929050565b600080600080600060a08688031215613797578081fd5b85356137a281614554565b945060208601356137b281614554565b935060408601356001600160401b03808211156137cd578283fd5b6137d989838a01613604565b945060608801359150808211156137ee578283fd5b6137fa89838a01613604565b9350608088013591508082111561380f578283fd5b5061381c888289016136be565b9150509295509295909350565b600080600080600060808688031215613840578283fd5b853561384b81614554565b9450602086013561385b81614554565b93506040860135925060608601356001600160401b0381111561387c578182fd5b61388888828901613678565b969995985093965092949392505050565b600080600080600060a086880312156138b0578283fd5b85356138bb81614554565b945060208601356138cb81614554565b9350604086013592506060860135915060808601356001600160401b038111156138f3578182fd5b61381c888289016136be565b60008060408385031215613911578182fd5b823561391c81614554565b9150602083013561377581614569565b6000806040838503121561393e578182fd5b823561394981614554565b946020939093013593505050565b60008060408385031215613969578182fd5b82356001600160401b038082111561397f578384fd5b818501915085601f830112613992578384fd5b8135602061399f82614377565b6040516139ac8282614440565b8381528281019150858301600585901b870184018b10156139cb578889fd5b8896505b848710156139f65780356139e281614554565b8352600196909601959183019183016139cf565b5096505086013592505080821115613a0c578283fd5b506130eb85828601613604565b600060208284031215613a2a578081fd5b81516121ad81614569565b600060208284031215613a46578081fd5b5035919050565b600060208284031215613a5e578081fd5b5051919050565b60008060408385031215613a77578182fd5b82359150602083013561377581614554565b600080600060608486031215613a9d578081fd5b833592506020840135613aaf81614554565b91506040840135613abf81614554565b809150509250925092565b60008060008060808587031215613adf578182fd5b843593506020850135613af181614554565b92506040850135613b0181614554565b9150613b0f606086016136dd565b905092959194509250565b600080600060608486031215613b2e578081fd5b83359250602084013591506040840135613abf81614554565b600080600080600060a08688031215613b5e578283fd5b85359450602086013593506040860135613b7781614554565b92506060860135613b8781614554565b9150613b95608087016136dd565b90509295509295909350565b600080600080600080600060c0888a031215613bbb578485fd5b8735965060208801356001600160401b03811115613bd7578586fd5b613be38a828b01613678565b9097509550506040880135613bf781614554565b93506060880135613c0781614554565b9250613c15608089016136dd565b9150613c2360a089016136f9565b905092959891949750929550565b600080600080600060808688031215613c48578283fd5b8535945060208601356001600160401b03811115613c64578384fd5b613c7088828901613678565b9095509350506040860135613c8481614554565b9150613b95606087016136f9565b60008060408385031215613ca4578182fd5b82359150613cb4602084016136dd565b90509250929050565b60008060408385031215613ccf578182fd5b82359150613cb4602084016136f9565b600060208284031215613cf0578081fd5b81356121ad81614577565b600060208284031215613d0c578081fd5b81516121ad81614577565b60008060008060608587031215613d2c578182fd5b84356001600160401b03811115613d41578283fd5b613d4d87828801613678565b9095509350506020850135613d6181614554565b9150613b0f604086016136f9565b60008060008060008060a08789031215613d87578384fd5b86356001600160401b03811115613d9c578485fd5b613da889828a01613678565b9097509550506020870135613dbc81614554565b9350604087013592506060870135613dd381614554565b9150613de1608088016136f9565b90509295509295509295565b600060208284031215613dfe578081fd5b81516001600160401b03811115613e13578182fd5b8201601f81018413613e23578182fd5b8051613e2e8161439a565b604051613e3b8282614440565b828152866020848601011115613e4f578485fd5b613e608360208301602087016143d9565b9695505050505050565b600080600060608486031215613e7e578081fd5b83356001600160401b03811115613e93578182fd5b8401601f81018613613ea3578182fd5b613eb2868235602084016135be565b9350506020840135613ec381614554565b9150613ed1604085016136f9565b90509250925092565b60008060408385031215613eec578182fd5b50508035926020909101359150565b6000815180845260208085019450808401835b83811015613f2a57815187529582019590820190600101613f0e565b509495945050505050565b60008151808452613f4d8160208601602086016143d9565b601f01601f19169290920160200192915050565b8183823760009101908152919050565b60ff60f81b8460f81b16815260008351613f928160018501602088016143d9565b835190830190613fa98160018401602088016143d9565b0160010195945050505050565b6001600160a01b0386811682528516602082015260a060408201819052600090613fe290830186613efb565b8281036060840152613ff48186613efb565b905082810360808401526140088185613f35565b98975050505050505050565b6001600160a01b03868116825285166020820152604081018490526060810183905260a06080820181905260009061404e90830184613f35565b979650505050505050565b6020815260006121ad6020830184613efb565b60408152600061407f6040830185613efb565b82810360208401526140918185613efb565b95945050505050565b6020815260006121ad6020830184613f35565b6060815260006140c06060830186613f35565b6001600160a01b03949094166020830152506001600160601b0391909116604090910152919050565b60208082526028908201527f455243313135353a204552433131353552656365697665722072656a656374656040820152676420746f6b656e7360c01b606082015260800190565b60208082526028908201527f436f6e74726f6c6c61626c653a2043616c6c6572206973206e6f74206120636f604082015267373a3937b63632b960c11b606082015260800190565b6020808252602a908201527f4e616d65577261707065723a204f7065726174696f6e2070726f6869626974656040820152696420627920667573657360b01b606082015260800190565b60208082526025908201527f455243313135353a207472616e7366657220746f20746865207a65726f206164604082015264647265737360d81b606082015260800190565b60208082526034908201527f4e616d65577261707065723a206d73672e73656e646572206973206e6f7420746040820152731a19481bdddb995c881bdc88185c1c1c9bdd995960621b606082015260800190565b6020808252602a908201527f455243313135353a20696e73756666696369656e742062616c616e636520666f60408201526939103a3930b739b332b960b11b606082015260800190565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60208082526037908201527f4e616d65577261707065723a204675736520616c7265616479206275726e656460408201527f20666f72207472616e7366657272696e67206f776e6572000000000000000000606082015260800190565b6001600160601b0384168152606081016005841061436657634e487b7160e01b600052602160045260246000fd5b602082019390935260400152919050565b60006001600160401b038211156143905761439061449d565b5060051b60200190565b60006001600160401b038211156143b3576143b361449d565b50601f01601f191660200190565b600082198211156143d4576143d4614487565b500190565b60005b838110156143f45781810151838201526020016143dc565b838111156123765750506000910152565b600181811c9082168061441957607f821691505b6020821081141561443a57634e487b7160e01b600052602260045260246000fd5b50919050565b601f8201601f191681016001600160401b03811182821017156144655761446561449d565b6040525050565b600060001982141561448057614480614487565b5060010190565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052604160045260246000fd5b600060033d11156144c857600481823e5160e01c5b90565b600060443d10156144d95790565b6040516003193d81016004833e81513d6001600160401b03816024840111818411171561450857505050505090565b82850191508151818111156145205750505050505090565b843d870101602082850101111561453a5750505050505090565b61454960208286010187614440565b509095945050505050565b6001600160a01b038116811461264b57600080fd5b801515811461264b57600080fd5b6001600160e01b03198116811461264b57600080fdfe93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4aea26469706673582212204c96911547c124cb5890e6d58b847b961898aff5e4911d08a5846500d767ebf464736f6c6343000804003393cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae"
++}
 diff --git a/constants/interfaces.d.ts b/constants/interfaces.d.ts
 new file mode 100644
 index 0000000000000000000000000000000000000000..14e2565e9cd940295edd8c36c3616d756e105ab7
@@ -50,10 +1187,10 @@ index 0000000000000000000000000000000000000000..902a4e8e4e6573b6ece8fc10596adb1e
 \ No newline at end of file
 diff --git a/contracts.d.ts b/contracts.d.ts
 new file mode 100644
-index 0000000000000000000000000000000000000000..e42652d707340f138e23f5bf015ce7754f62d37e
+index 0000000000000000000000000000000000000000..23e23dabfd62e7a4516d5c7914800312a3e461e2
 --- /dev/null
 +++ b/contracts.d.ts
-@@ -0,0 +1,50 @@
+@@ -0,0 +1,54 @@
 +export function getTestRegistrarContract({ address, provider }: {
 +    address: any;
 +    provider: any;
@@ -102,23 +1239,27 @@ index 0000000000000000000000000000000000000000..e42652d707340f138e23f5bf015ce775
 +    address: any;
 +    provider: any;
 +}): Contract;
++export function getNameWrapperContract({ address, provider }: {
++    address: any;
++    provider: any;
++}): Contract;
 +import { Contract } from "ethers";
 +//# sourceMappingURL=contracts.d.ts.map
 \ No newline at end of file
 diff --git a/contracts.d.ts.map b/contracts.d.ts.map
 new file mode 100644
-index 0000000000000000000000000000000000000000..7efcde41be301794a0ad1444224876a418942f3f
+index 0000000000000000000000000000000000000000..82aacb2ead814f775d821430d53737288635a53a
 --- /dev/null
 +++ b/contracts.d.ts.map
 @@ -0,0 +1 @@
-+{"version":3,"file":"contracts.d.ts","sourceRoot":"","sources":["../src/contracts.js"],"names":[],"mappings":"AAiCA;;;aAEC;AAlBD;;;aAEC;AAUD;;;aAEC;AAVD;;;aAEC;AAED;;;aAEC;AAcD;;;aAEC;AAND;;;aAEC;AAMD;;;aAEC;AAED;;;aAEC;AAMD;;;aAEC;AAND;;;aAEC;AAMD;;;aAEC"}
++{"version":3,"file":"contracts.d.ts","sourceRoot":"","sources":["../src/contracts.js"],"names":[],"mappings":"AAkCA;;;aAEC;AAlBD;;;aAEC;AAUD;;;aAEC;AAVD;;;aAEC;AAED;;;aAEC;AAcD;;;aAEC;AAND;;;aAEC;AAMD;;;aAEC;AAED;;;aAEC;AAMD;;;aAEC;AAND;;;aAEC;AAMD;;;aAEC;AAED;;;aAEC"}
 \ No newline at end of file
 diff --git a/contracts.js b/contracts.js
 new file mode 100644
-index 0000000000000000000000000000000000000000..3720540f13c1dbbaeb26f48b05960178a13fff8f
+index 0000000000000000000000000000000000000000..527c370666db06ea248fb363ef05d24076044aa2
 --- /dev/null
 +++ b/contracts.js
-@@ -0,0 +1,101 @@
+@@ -0,0 +1,110 @@
 +"use strict";
 +
 +Object.defineProperty(exports, "__esModule", {
@@ -136,6 +1277,7 @@ index 0000000000000000000000000000000000000000..3720540f13c1dbbaeb26f48b05960178
 +exports.getLegacyAuctionContract = getLegacyAuctionContract;
 +exports.getDeedContract = getDeedContract;
 +exports.getBulkRenewalContract = getBulkRenewalContract;
++exports.getNameWrapperContract = getNameWrapperContract;
 +
 +var _ethers = require("ethers");
 +
@@ -148,6 +1290,8 @@ index 0000000000000000000000000000000000000000..3720540f13c1dbbaeb26f48b05960178
 +var _HashRegistrar = require("@ensdomains/contracts/abis/ens/HashRegistrar");
 +
 +var _Deed = require("@ensdomains/contracts/abis/ens/Deed");
++
++var _nameWrapper = require("./abis/nameWrapper.json");
 +
 +function getReverseRegistrarContract(_ref) {
 +  var address = _ref.address,
@@ -219,6 +1363,12 @@ index 0000000000000000000000000000000000000000..3720540f13c1dbbaeb26f48b05960178
 +  var address = _ref12.address,
 +      provider = _ref12.provider;
 +  return new _ethers.Contract(address, _ensContracts.BulkRenewal, provider);
++}
++
++function getNameWrapperContract(_ref13) {
++  var address = _ref13.address,
++      provider = _ref13.provider;
++  return new _ethers.Contract(address, _nameWrapper.abi, provider);
 +}
 \ No newline at end of file
 diff --git a/dnsregistrar.d.ts b/dnsregistrar.d.ts
@@ -470,10 +1620,10 @@ index 0000000000000000000000000000000000000000..4d62c059202421bc6cb8e508fcb01612
 \ No newline at end of file
 diff --git a/ens.d.ts b/ens.d.ts
 new file mode 100644
-index 0000000000000000000000000000000000000000..9d66f0600a52620a310622cb263e5502100bf501
+index 0000000000000000000000000000000000000000..6d628fd0f73c39f79c0c14ac4bb10b4bd27ee7f5
 --- /dev/null
 +++ b/ens.d.ts
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,90 @@
 +export function getNamehash(name: any): string;
 +export class ENS {
 +    constructor({ networkId, registryAddress, provider }: {
@@ -490,15 +1640,21 @@ index 0000000000000000000000000000000000000000..9d66f0600a52620a310622cb263e5502
 +        };
 +        4: {
 +            registry: string;
++            namewrapper: string;
 +        };
 +        5: {
 +            registry: string;
 +        };
 +    };
 +    registryAddress: any;
-+    ENS: Contract;
-+    getENSContractInstance(): Contract;
++    ENS: import("ethers").Contract;
++    nameWrapperAddress: any;
++    nameWrapperContract: import("ethers").Contract | undefined;
++    getENSContractInstance(): import("ethers").Contract;
 +    getOwner(name: any): Promise<any>;
++    getNameWrapperOwner(name: any): Promise<any>;
++    getNameWrapperFuses(name: any): Promise<any>;
++    transferNameWrapperOwnership(name: any, currentOwnerAddress: any, newOwnerAddress: any): Promise<any>;
 +    getResolver(name: any): Promise<any>;
 +    getTTL(name: any): Promise<any>;
 +    getResolverWithLabelhash(labelhash: any, nodehash: any): Promise<any>;
@@ -557,23 +1713,22 @@ index 0000000000000000000000000000000000000000..9d66f0600a52620a310622cb263e5502
 +        fromBlock: any;
 +    }): Promise<any>;
 +}
-+import { Contract } from "ethers";
 +//# sourceMappingURL=ens.d.ts.map
 \ No newline at end of file
 diff --git a/ens.d.ts.map b/ens.d.ts.map
 new file mode 100644
-index 0000000000000000000000000000000000000000..6461acb30e4dc7e4133bbca683a25df62b7f1317
+index 0000000000000000000000000000000000000000..75b02eaa10f8c11a9752d906ee5273e398d99c68
 --- /dev/null
 +++ b/ens.d.ts.map
 @@ -0,0 +1 @@
-+{"version":3,"file":"ens.d.ts","sourceRoot":"","sources":["../src/ens.js"],"names":[],"mappings":"AA0CA,+CAEC;AA0BD;IACE;;;;OAcC;IAbC;;;;;;;;;;;;;MAA0B;IAS1B,qBAAsC;IAGtC,cAAsB;IAIxB,mCAEC;IAID,kCAIC;IAED,qCAGC;IAED,gCAGC;IAED,sEAGC;IAED,mEAGC;IAED,sEAmBC;IAED,oCAGC;IAED,8CAIC;IAED,6EAoBC;IAED;;;OAGC;IAED;;;OA6CC;IAED,2CAGC;IAED,0EAmBC;IAED;;mBAIC;IAED;;mBAsBC;IAED,oCAGC;IAED,4CAmBC;IAED;;;;;;;SA6BC;IAED,0CA0BC;IAID,iDAMC;IAED,wDAUC;IAED,wEAiBC;IAED,oDAMC;IAED,kDAGC;IAED,iFAUC;IAED,yDAGC;IAED,wFAqBC;IAED,kDAGC;IAED,iFAUC;IAED,sDAGC;IAED,qFAcC;IAED,6DAGC;IAED,4FAUC;IAED,yCAQC;IAED,yCAMC;IAED,sEAoBC;IAED,8CAaC;IAID;;;qBAqBC;CACF"}
++{"version":3,"file":"ens.d.ts","sourceRoot":"","sources":["../src/ens.js"],"names":[],"mappings":"AA+BA,+CAEC;AA2BD;IACE;;;;OA8BC;IA7BC;;;;;;;;;;;;;;MAA0B;IAW1B,qBAAsC;IAGtC,+BAAsB;IAOpB,wBAA+D;IAC/D,2DAGE;IAON,oDAEC;IAID,kCAQC;IAED,6CAIC;IAED,6CAIC;IAED,sGA2BC;IAED,qCAGC;IAED,gCAGC;IAED,sEAGC;IAED,mEAGC;IAED,sEAmBC;IAED,oCAGC;IAED,8CAIC;IAED,6EAoBC;IAED;;;OAGC;IAED;;;OA6CC;IAED,2CAGC;IAED,0EAmBC;IAED;;mBAIC;IAED;;mBAsBC;IAED,oCAGC;IAED,4CAmBC;IAED;;;;;;;SAgCC;IAED,0CA0BC;IAID,iDAMC;IAED,wDAUC;IAED,wEAiBC;IAED,oDAMC;IAED,kDAGC;IAED,iFAUC;IAED,yDAGC;IAED,wFAqBC;IAED,kDAGC;IAED,iFAUC;IAED,sDAGC;IAED,qFAcC;IAED,6DAGC;IAED,4FAUC;IAED,yCAQC;IAED,yCAMC;IAED,sEAoBC;IAED,8CAaC;IAID;;;qBAqBC;CACF"}
 \ No newline at end of file
 diff --git a/ens.js b/ens.js
 new file mode 100644
-index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72beb97db542
+index 0000000000000000000000000000000000000000..bbc1fe0a2ab655f38d42c390afb404955fbf34fd
 --- /dev/null
 +++ b/ens.js
-@@ -0,0 +1,1740 @@
+@@ -0,0 +1,1862 @@
 +"use strict";
 +
 +var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -598,25 +1753,23 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +
 +var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 +
-+var _has = _interopRequireDefault(require("lodash/has"));
-+
-+var _ethers = require("ethers");
-+
-+var _web = require("./web3");
-+
 +var _addressEncoder = require("@ensdomains/address-encoder");
 +
 +var _ENS6 = require("@ensdomains/contracts/abis/ens/ENS.json");
++
++var _ethers = require("ethers");
++
++var _contracts = require("./contracts");
 +
 +var _preimage = require("./preimage");
 +
 +var _utils = require("./utils");
 +
++var _contents = require("./utils/contents");
++
 +var _labelhash = require("./utils/labelhash");
 +
-+var _contracts = require("./contracts");
-+
-+var _contents = require("./utils/contents");
++var _web = require("./web3");
 +
 +function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 +
@@ -632,21 +1785,21 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +}
 +
 +function _getNamehashWithLabelHash() {
-+  _getNamehashWithLabelHash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee39(labelHash, nodeHash) {
++  _getNamehashWithLabelHash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee42(labelHash, nodeHash) {
 +    var node;
-+    return _regenerator["default"].wrap(function _callee39$(_context39) {
++    return _regenerator["default"].wrap(function _callee42$(_context42) {
 +      while (1) {
-+        switch (_context39.prev = _context39.next) {
++        switch (_context42.prev = _context42.next) {
 +          case 0:
 +            node = _ethers.utils.keccak256(nodeHash + labelHash.slice(2));
-+            return _context39.abrupt("return", node.toString());
++            return _context42.abrupt("return", node.toString());
 +
 +          case 2:
 +          case "end":
-+            return _context39.stop();
++            return _context42.stop();
 +        }
 +      }
-+    }, _callee39);
++    }, _callee42);
 +  }));
 +  return _getNamehashWithLabelHash.apply(this, arguments);
 +}
@@ -663,7 +1816,8 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
 +  },
 +  4: {
-+    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
++    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
++    namewrapper: '0x88ce50eFeA21996B20838d5E71994191562758f9'
 +  },
 +  5: {
 +    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
@@ -677,7 +1831,7 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        provider = _ref.provider;
 +    (0, _classCallCheck2["default"])(this, ENS);
 +    this.contracts = contracts;
-+    var hasRegistry = (0, _has["default"])(this.contracts[networkId], 'registry');
++    var hasRegistry = Object.keys(this.contracts[networkId]).includes('registry');
 +
 +    if (!hasRegistry && !registryAddress) {
 +      throw new Error("Unsupported network ".concat(networkId));
@@ -691,6 +1845,17 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +      provider: provider
 +    });
 +    this.ENS = ENSContract;
++    var hasNameWrapper = Object.keys(this.contracts[networkId]).includes('namewrapper');
++
++    if (hasNameWrapper) {
++      this.nameWrapperAddress = this.contracts[networkId].namewrapper;
++      this.nameWrapperContract = (0, _contracts.getNameWrapperContract)({
++        address: this.nameWrapperAddress,
++        provider: provider
++      });
++    } else {
++      console.log("NameWrapper not supported network ".concat(networkId));
++    }
 +  }
 +  /* Get the raw Ethers contract object */
 +
@@ -717,9 +1882,22 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +
 +              case 3:
 +                owner = _context.sent;
++
++                if (!(owner === this.nameWrapperAddress)) {
++                  _context.next = 10;
++                  break;
++                }
++
++                _context.next = 7;
++                return this.getNameWrapperOwner(name);
++
++              case 7:
++                return _context.abrupt("return", _context.sent);
++
++              case 10:
 +                return _context.abrupt("return", owner);
 +
-+              case 5:
++              case 11:
 +              case "end":
 +                return _context.stop();
 +            }
@@ -734,18 +1912,23 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +      return getOwner;
 +    }()
 +  }, {
-+    key: "getResolver",
++    key: "getNameWrapperOwner",
 +    value: function () {
-+      var _getResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(name) {
-+        var namehash;
++      var _getNameWrapperOwner = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(name) {
++        var namehash, owner;
 +        return _regenerator["default"].wrap(function _callee2$(_context2) {
 +          while (1) {
 +            switch (_context2.prev = _context2.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                return _context2.abrupt("return", this.ENS.resolver(namehash));
++                _context2.next = 3;
++                return this.nameWrapperContract.ownerOf(namehash);
 +
-+              case 2:
++              case 3:
++                owner = _context2.sent;
++                return _context2.abrupt("return", owner);
++
++              case 5:
 +              case "end":
 +                return _context2.stop();
 +            }
@@ -753,7 +1936,101 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        }, _callee2, this);
 +      }));
 +
-+      function getResolver(_x4) {
++      function getNameWrapperOwner(_x4) {
++        return _getNameWrapperOwner.apply(this, arguments);
++      }
++
++      return getNameWrapperOwner;
++    }()
++  }, {
++    key: "getNameWrapperFuses",
++    value: function () {
++      var _getNameWrapperFuses = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(name) {
++        var namehash, fuses;
++        return _regenerator["default"].wrap(function _callee3$(_context3) {
++          while (1) {
++            switch (_context3.prev = _context3.next) {
++              case 0:
++                namehash = getNamehash(name);
++                _context3.next = 3;
++                return this.nameWrapperContract.getFuses(namehash);
++
++              case 3:
++                fuses = _context3.sent;
++                return _context3.abrupt("return", fuses === null || fuses === void 0 ? void 0 : fuses.fuses);
++
++              case 5:
++              case "end":
++                return _context3.stop();
++            }
++          }
++        }, _callee3, this);
++      }));
++
++      function getNameWrapperFuses(_x5) {
++        return _getNameWrapperFuses.apply(this, arguments);
++      }
++
++      return getNameWrapperFuses;
++    }()
++  }, {
++    key: "transferNameWrapperOwnership",
++    value: function () {
++      var _transferNameWrapperOwnership = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(name, currentOwnerAddress, newOwnerAddress) {
++        var namehash, signer, nameWrapperContractWithSigner, encoded;
++        return _regenerator["default"].wrap(function _callee4$(_context4) {
++          while (1) {
++            switch (_context4.prev = _context4.next) {
++              case 0:
++                namehash = getNamehash(name);
++                _context4.next = 3;
++                return (0, _web.getSigner)();
++
++              case 3:
++                signer = _context4.sent;
++                nameWrapperContractWithSigner = this.nameWrapperContract.connect(signer);
++                encoded = _ethers.utils.defaultAbiCoder.encode(['address', 'address', 'uint256', 'uint256'], [currentOwnerAddress, newOwnerAddress, namehash, '0x000000000000000000000001']);
++                _context4.next = 8;
++                return nameWrapperContractWithSigner.safeTransferFrom(name, newOwnerAddress, namehash, 1, encoded);
++
++              case 8:
++                return _context4.abrupt("return", _context4.sent);
++
++              case 9:
++              case "end":
++                return _context4.stop();
++            }
++          }
++        }, _callee4, this);
++      }));
++
++      function transferNameWrapperOwnership(_x6, _x7, _x8) {
++        return _transferNameWrapperOwnership.apply(this, arguments);
++      }
++
++      return transferNameWrapperOwnership;
++    }()
++  }, {
++    key: "getResolver",
++    value: function () {
++      var _getResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(name) {
++        var namehash;
++        return _regenerator["default"].wrap(function _callee5$(_context5) {
++          while (1) {
++            switch (_context5.prev = _context5.next) {
++              case 0:
++                namehash = getNamehash(name);
++                return _context5.abrupt("return", this.ENS.resolver(namehash));
++
++              case 2:
++              case "end":
++                return _context5.stop();
++            }
++          }
++        }, _callee5, this);
++      }));
++
++      function getResolver(_x9) {
 +        return _getResolver.apply(this, arguments);
 +      }
 +
@@ -762,24 +2039,24 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getTTL",
 +    value: function () {
-+      var _getTTL = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(name) {
++      var _getTTL = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(name) {
 +        var namehash;
-+        return _regenerator["default"].wrap(function _callee3$(_context3) {
++        return _regenerator["default"].wrap(function _callee6$(_context6) {
 +          while (1) {
-+            switch (_context3.prev = _context3.next) {
++            switch (_context6.prev = _context6.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                return _context3.abrupt("return", this.ENS.ttl(namehash));
++                return _context6.abrupt("return", this.ENS.ttl(namehash));
 +
 +              case 2:
 +              case "end":
-+                return _context3.stop();
++                return _context6.stop();
 +            }
 +          }
-+        }, _callee3, this);
++        }, _callee6, this);
 +      }));
 +
-+      function getTTL(_x5) {
++      function getTTL(_x10) {
 +        return _getTTL.apply(this, arguments);
 +      }
 +
@@ -788,133 +2065,18 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getResolverWithLabelhash",
 +    value: function () {
-+      var _getResolverWithLabelhash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(labelhash, nodehash) {
++      var _getResolverWithLabelhash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(labelhash, nodehash) {
 +        var namehash;
-+        return _regenerator["default"].wrap(function _callee4$(_context4) {
-+          while (1) {
-+            switch (_context4.prev = _context4.next) {
-+              case 0:
-+                _context4.next = 2;
-+                return getNamehashWithLabelHash(labelhash, nodehash);
-+
-+              case 2:
-+                namehash = _context4.sent;
-+                return _context4.abrupt("return", this.ENS.resolver(namehash));
-+
-+              case 4:
-+              case "end":
-+                return _context4.stop();
-+            }
-+          }
-+        }, _callee4, this);
-+      }));
-+
-+      function getResolverWithLabelhash(_x6, _x7) {
-+        return _getResolverWithLabelhash.apply(this, arguments);
-+      }
-+
-+      return getResolverWithLabelhash;
-+    }()
-+  }, {
-+    key: "getOwnerWithLabelHash",
-+    value: function () {
-+      var _getOwnerWithLabelHash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(labelhash, nodeHash) {
-+        var namehash;
-+        return _regenerator["default"].wrap(function _callee5$(_context5) {
-+          while (1) {
-+            switch (_context5.prev = _context5.next) {
-+              case 0:
-+                _context5.next = 2;
-+                return getNamehashWithLabelHash(labelhash, nodeHash);
-+
-+              case 2:
-+                namehash = _context5.sent;
-+                return _context5.abrupt("return", this.ENS.owner(namehash));
-+
-+              case 4:
-+              case "end":
-+                return _context5.stop();
-+            }
-+          }
-+        }, _callee5, this);
-+      }));
-+
-+      function getOwnerWithLabelHash(_x8, _x9) {
-+        return _getOwnerWithLabelHash.apply(this, arguments);
-+      }
-+
-+      return getOwnerWithLabelHash;
-+    }()
-+  }, {
-+    key: "getEthAddressWithResolver",
-+    value: function () {
-+      var _getEthAddressWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(name, resolverAddr) {
-+        var namehash, provider, Resolver, addr;
-+        return _regenerator["default"].wrap(function _callee6$(_context6) {
-+          while (1) {
-+            switch (_context6.prev = _context6.next) {
-+              case 0:
-+                if (!(parseInt(resolverAddr, 16) === 0)) {
-+                  _context6.next = 2;
-+                  break;
-+                }
-+
-+                return _context6.abrupt("return", _utils.emptyAddress);
-+
-+              case 2:
-+                namehash = getNamehash(name);
-+                _context6.prev = 3;
-+                _context6.next = 6;
-+                return (0, _web.getProvider)();
-+
-+              case 6:
-+                provider = _context6.sent;
-+                Resolver = (0, _contracts.getResolverContract)({
-+                  address: resolverAddr,
-+                  provider: provider
-+                });
-+                _context6.next = 10;
-+                return Resolver['addr(bytes32)'](namehash);
-+
-+              case 10:
-+                addr = _context6.sent;
-+                return _context6.abrupt("return", addr);
-+
-+              case 14:
-+                _context6.prev = 14;
-+                _context6.t0 = _context6["catch"](3);
-+                console.warn('Error getting addr on the resolver contract, are you sure the resolver address is a resolver contract?');
-+                return _context6.abrupt("return", _utils.emptyAddress);
-+
-+              case 18:
-+              case "end":
-+                return _context6.stop();
-+            }
-+          }
-+        }, _callee6, null, [[3, 14]]);
-+      }));
-+
-+      function getEthAddressWithResolver(_x10, _x11) {
-+        return _getEthAddressWithResolver.apply(this, arguments);
-+      }
-+
-+      return getEthAddressWithResolver;
-+    }()
-+  }, {
-+    key: "getAddress",
-+    value: function () {
-+      var _getAddress = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(name) {
-+        var resolverAddr;
 +        return _regenerator["default"].wrap(function _callee7$(_context7) {
 +          while (1) {
 +            switch (_context7.prev = _context7.next) {
 +              case 0:
 +                _context7.next = 2;
-+                return this.getResolver(name);
++                return getNamehashWithLabelHash(labelhash, nodehash);
 +
 +              case 2:
-+                resolverAddr = _context7.sent;
-+                return _context7.abrupt("return", this.getEthAddressWithResolver(name, resolverAddr));
++                namehash = _context7.sent;
++                return _context7.abrupt("return", this.ENS.resolver(namehash));
 +
 +              case 4:
 +              case "end":
@@ -924,38 +2086,29 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        }, _callee7, this);
 +      }));
 +
-+      function getAddress(_x12) {
-+        return _getAddress.apply(this, arguments);
++      function getResolverWithLabelhash(_x11, _x12) {
++        return _getResolverWithLabelhash.apply(this, arguments);
 +      }
 +
-+      return getAddress;
++      return getResolverWithLabelhash;
 +    }()
 +  }, {
-+    key: "getAddr",
++    key: "getOwnerWithLabelHash",
 +    value: function () {
-+      var _getAddr = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(name, key) {
-+        var resolverAddr;
++      var _getOwnerWithLabelHash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(labelhash, nodeHash) {
++        var namehash;
 +        return _regenerator["default"].wrap(function _callee8$(_context8) {
 +          while (1) {
 +            switch (_context8.prev = _context8.next) {
 +              case 0:
 +                _context8.next = 2;
-+                return this.getResolver(name);
++                return getNamehashWithLabelHash(labelhash, nodeHash);
 +
 +              case 2:
-+                resolverAddr = _context8.sent;
++                namehash = _context8.sent;
++                return _context8.abrupt("return", this.ENS.owner(namehash));
 +
-+                if (!(parseInt(resolverAddr, 16) === 0)) {
-+                  _context8.next = 5;
-+                  break;
-+                }
-+
-+                return _context8.abrupt("return", _utils.emptyAddress);
-+
-+              case 5:
-+                return _context8.abrupt("return", this.getAddrWithResolver(name, key, resolverAddr));
-+
-+              case 6:
++              case 4:
 +              case "end":
 +                return _context8.stop();
 +            }
@@ -963,75 +2116,71 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        }, _callee8, this);
 +      }));
 +
-+      function getAddr(_x13, _x14) {
-+        return _getAddr.apply(this, arguments);
++      function getOwnerWithLabelHash(_x13, _x14) {
++        return _getOwnerWithLabelHash.apply(this, arguments);
 +      }
 +
-+      return getAddr;
++      return getOwnerWithLabelHash;
 +    }()
 +  }, {
-+    key: "getAddrWithResolver",
++    key: "getEthAddressWithResolver",
 +    value: function () {
-+      var _getAddrWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(name, key, resolverAddr) {
-+        var namehash, provider, Resolver, _formatsByName$key, coinType, encoder, addr;
-+
++      var _getEthAddressWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(name, resolverAddr) {
++        var namehash, provider, Resolver, addr;
 +        return _regenerator["default"].wrap(function _callee9$(_context9) {
 +          while (1) {
 +            switch (_context9.prev = _context9.next) {
 +              case 0:
-+                namehash = getNamehash(name);
-+                _context9.prev = 1;
-+                _context9.next = 4;
-+                return (0, _web.getProvider)();
-+
-+              case 4:
-+                provider = _context9.sent;
-+                Resolver = (0, _contracts.getResolverContract)({
-+                  address: resolverAddr,
-+                  provider: provider
-+                });
-+                _formatsByName$key = _addressEncoder.formatsByName[key], coinType = _formatsByName$key.coinType, encoder = _formatsByName$key.encoder;
-+                _context9.next = 9;
-+                return Resolver['addr(bytes32,uint256)'](namehash, coinType);
-+
-+              case 9:
-+                addr = _context9.sent;
-+
-+                if (!(addr === '0x')) {
-+                  _context9.next = 12;
++                if (!(parseInt(resolverAddr, 16) === 0)) {
++                  _context9.next = 2;
 +                  break;
 +                }
 +
 +                return _context9.abrupt("return", _utils.emptyAddress);
 +
-+              case 12:
-+                return _context9.abrupt("return", encoder(Buffer.from(addr.slice(2), 'hex')));
++              case 2:
++                namehash = getNamehash(name);
++                _context9.prev = 3;
++                _context9.next = 6;
++                return (0, _web.getProvider)();
 +
-+              case 15:
-+                _context9.prev = 15;
-+                _context9.t0 = _context9["catch"](1);
-+                console.log(_context9.t0);
++              case 6:
++                provider = _context9.sent;
++                Resolver = (0, _contracts.getResolverContract)({
++                  address: resolverAddr,
++                  provider: provider
++                });
++                _context9.next = 10;
++                return Resolver['addr(bytes32)'](namehash);
++
++              case 10:
++                addr = _context9.sent;
++                return _context9.abrupt("return", addr);
++
++              case 14:
++                _context9.prev = 14;
++                _context9.t0 = _context9["catch"](3);
 +                console.warn('Error getting addr on the resolver contract, are you sure the resolver address is a resolver contract?');
 +                return _context9.abrupt("return", _utils.emptyAddress);
 +
-+              case 20:
++              case 18:
 +              case "end":
 +                return _context9.stop();
 +            }
 +          }
-+        }, _callee9, null, [[1, 15]]);
++        }, _callee9, null, [[3, 14]]);
 +      }));
 +
-+      function getAddrWithResolver(_x15, _x16, _x17) {
-+        return _getAddrWithResolver.apply(this, arguments);
++      function getEthAddressWithResolver(_x15, _x16) {
++        return _getEthAddressWithResolver.apply(this, arguments);
 +      }
 +
-+      return getAddrWithResolver;
++      return getEthAddressWithResolver;
 +    }()
 +  }, {
-+    key: "getContent",
++    key: "getAddress",
 +    value: function () {
-+      var _getContent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(name) {
++      var _getAddress = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(name) {
 +        var resolverAddr;
 +        return _regenerator["default"].wrap(function _callee10$(_context10) {
 +          while (1) {
@@ -1042,7 +2191,7 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +
 +              case 2:
 +                resolverAddr = _context10.sent;
-+                return _context10.abrupt("return", this.getContentWithResolver(name, resolverAddr));
++                return _context10.abrupt("return", this.getEthAddressWithResolver(name, resolverAddr));
 +
 +              case 4:
 +              case "end":
@@ -1052,7 +2201,135 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        }, _callee10, this);
 +      }));
 +
-+      function getContent(_x18) {
++      function getAddress(_x17) {
++        return _getAddress.apply(this, arguments);
++      }
++
++      return getAddress;
++    }()
++  }, {
++    key: "getAddr",
++    value: function () {
++      var _getAddr = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(name, key) {
++        var resolverAddr;
++        return _regenerator["default"].wrap(function _callee11$(_context11) {
++          while (1) {
++            switch (_context11.prev = _context11.next) {
++              case 0:
++                _context11.next = 2;
++                return this.getResolver(name);
++
++              case 2:
++                resolverAddr = _context11.sent;
++
++                if (!(parseInt(resolverAddr, 16) === 0)) {
++                  _context11.next = 5;
++                  break;
++                }
++
++                return _context11.abrupt("return", _utils.emptyAddress);
++
++              case 5:
++                return _context11.abrupt("return", this.getAddrWithResolver(name, key, resolverAddr));
++
++              case 6:
++              case "end":
++                return _context11.stop();
++            }
++          }
++        }, _callee11, this);
++      }));
++
++      function getAddr(_x18, _x19) {
++        return _getAddr.apply(this, arguments);
++      }
++
++      return getAddr;
++    }()
++  }, {
++    key: "getAddrWithResolver",
++    value: function () {
++      var _getAddrWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee12(name, key, resolverAddr) {
++        var namehash, provider, Resolver, _formatsByName$key, coinType, encoder, addr;
++
++        return _regenerator["default"].wrap(function _callee12$(_context12) {
++          while (1) {
++            switch (_context12.prev = _context12.next) {
++              case 0:
++                namehash = getNamehash(name);
++                _context12.prev = 1;
++                _context12.next = 4;
++                return (0, _web.getProvider)();
++
++              case 4:
++                provider = _context12.sent;
++                Resolver = (0, _contracts.getResolverContract)({
++                  address: resolverAddr,
++                  provider: provider
++                });
++                _formatsByName$key = _addressEncoder.formatsByName[key], coinType = _formatsByName$key.coinType, encoder = _formatsByName$key.encoder;
++                _context12.next = 9;
++                return Resolver['addr(bytes32,uint256)'](namehash, coinType);
++
++              case 9:
++                addr = _context12.sent;
++
++                if (!(addr === '0x')) {
++                  _context12.next = 12;
++                  break;
++                }
++
++                return _context12.abrupt("return", _utils.emptyAddress);
++
++              case 12:
++                return _context12.abrupt("return", encoder(Buffer.from(addr.slice(2), 'hex')));
++
++              case 15:
++                _context12.prev = 15;
++                _context12.t0 = _context12["catch"](1);
++                console.log(_context12.t0);
++                console.warn('Error getting addr on the resolver contract, are you sure the resolver address is a resolver contract?');
++                return _context12.abrupt("return", _utils.emptyAddress);
++
++              case 20:
++              case "end":
++                return _context12.stop();
++            }
++          }
++        }, _callee12, null, [[1, 15]]);
++      }));
++
++      function getAddrWithResolver(_x20, _x21, _x22) {
++        return _getAddrWithResolver.apply(this, arguments);
++      }
++
++      return getAddrWithResolver;
++    }()
++  }, {
++    key: "getContent",
++    value: function () {
++      var _getContent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee13(name) {
++        var resolverAddr;
++        return _regenerator["default"].wrap(function _callee13$(_context13) {
++          while (1) {
++            switch (_context13.prev = _context13.next) {
++              case 0:
++                _context13.next = 2;
++                return this.getResolver(name);
++
++              case 2:
++                resolverAddr = _context13.sent;
++                return _context13.abrupt("return", this.getContentWithResolver(name, resolverAddr));
++
++              case 4:
++              case "end":
++                return _context13.stop();
++            }
++          }
++        }, _callee13, this);
++      }));
++
++      function getContent(_x23) {
 +        return _getContent.apply(this, arguments);
 +      }
 +
@@ -1061,101 +2338,101 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getContentWithResolver",
 +    value: function () {
-+      var _getContentWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(name, resolverAddr) {
++      var _getContentWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee14(name, resolverAddr) {
 +        var _namehash, provider, Resolver, contentHashSignature, isContentHashSupported, encoded, _decodeContenthash, protocolType, decoded, error, value, message;
 +
-+        return _regenerator["default"].wrap(function _callee11$(_context11) {
++        return _regenerator["default"].wrap(function _callee14$(_context14) {
 +          while (1) {
-+            switch (_context11.prev = _context11.next) {
++            switch (_context14.prev = _context14.next) {
 +              case 0:
 +                if (!(parseInt(resolverAddr, 16) === 0)) {
-+                  _context11.next = 2;
++                  _context14.next = 2;
 +                  break;
 +                }
 +
-+                return _context11.abrupt("return", _utils.emptyAddress);
++                return _context14.abrupt("return", _utils.emptyAddress);
 +
 +              case 2:
-+                _context11.prev = 2;
++                _context14.prev = 2;
 +                _namehash = getNamehash(name);
-+                _context11.next = 6;
++                _context14.next = 6;
 +                return (0, _web.getProvider)();
 +
 +              case 6:
-+                provider = _context11.sent;
++                provider = _context14.sent;
 +                Resolver = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
 +                contentHashSignature = _ethers.utils.solidityKeccak256(['string'], ['contenthash(bytes32)']).slice(0, 10);
-+                _context11.next = 11;
++                _context14.next = 11;
 +                return Resolver.supportsInterface(contentHashSignature);
 +
 +              case 11:
-+                isContentHashSupported = _context11.sent;
++                isContentHashSupported = _context14.sent;
 +
 +                if (!isContentHashSupported) {
-+                  _context11.next = 22;
++                  _context14.next = 22;
 +                  break;
 +                }
 +
-+                _context11.next = 15;
++                _context14.next = 15;
 +                return Resolver.contenthash(_namehash);
 +
 +              case 15:
-+                encoded = _context11.sent;
++                encoded = _context14.sent;
 +                _decodeContenthash = (0, _contents.decodeContenthash)(encoded), protocolType = _decodeContenthash.protocolType, decoded = _decodeContenthash.decoded, error = _decodeContenthash.error;
 +
 +                if (!error) {
-+                  _context11.next = 19;
++                  _context14.next = 19;
 +                  break;
 +                }
 +
-+                return _context11.abrupt("return", {
++                return _context14.abrupt("return", {
 +                  value: error,
 +                  contentType: 'error'
 +                });
 +
 +              case 19:
-+                return _context11.abrupt("return", {
++                return _context14.abrupt("return", {
 +                  value: "".concat(protocolType, "://").concat(decoded),
 +                  contentType: 'contenthash'
 +                });
 +
 +              case 22:
-+                _context11.next = 24;
++                _context14.next = 24;
 +                return Resolver.content(_namehash);
 +
 +              case 24:
-+                value = _context11.sent;
-+                return _context11.abrupt("return", {
++                value = _context14.sent;
++                return _context14.abrupt("return", {
 +                  value: value,
 +                  contentType: 'oldcontent'
 +                });
 +
 +              case 26:
-+                _context11.next = 33;
++                _context14.next = 33;
 +                break;
 +
 +              case 28:
-+                _context11.prev = 28;
-+                _context11.t0 = _context11["catch"](2);
++                _context14.prev = 28;
++                _context14.t0 = _context14["catch"](2);
 +                message = 'Error getting content on the resolver contract, are you sure the resolver address is a resolver contract?';
-+                console.warn(message, _context11.t0);
-+                return _context11.abrupt("return", {
++                console.warn(message, _context14.t0);
++                return _context14.abrupt("return", {
 +                  value: message,
 +                  contentType: 'error'
 +                });
 +
 +              case 33:
 +              case "end":
-+                return _context11.stop();
++                return _context14.stop();
 +            }
 +          }
-+        }, _callee11, null, [[2, 28]]);
++        }, _callee14, null, [[2, 28]]);
 +      }));
 +
-+      function getContentWithResolver(_x19, _x20) {
++      function getContentWithResolver(_x24, _x25) {
 +        return _getContentWithResolver.apply(this, arguments);
 +      }
 +
@@ -1164,28 +2441,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getText",
 +    value: function () {
-+      var _getText = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee12(name, key) {
++      var _getText = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee15(name, key) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee12$(_context12) {
++        return _regenerator["default"].wrap(function _callee15$(_context15) {
 +          while (1) {
-+            switch (_context12.prev = _context12.next) {
++            switch (_context15.prev = _context15.next) {
 +              case 0:
-+                _context12.next = 2;
++                _context15.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context12.sent;
-+                return _context12.abrupt("return", this.getTextWithResolver(name, key, resolverAddr));
++                resolverAddr = _context15.sent;
++                return _context15.abrupt("return", this.getTextWithResolver(name, key, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context12.stop();
++                return _context15.stop();
 +            }
 +          }
-+        }, _callee12, this);
++        }, _callee15, this);
 +      }));
 +
-+      function getText(_x21, _x22) {
++      function getText(_x26, _x27) {
 +        return _getText.apply(this, arguments);
 +      }
 +
@@ -1194,53 +2471,53 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getTextWithResolver",
 +    value: function () {
-+      var _getTextWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee13(name, key, resolverAddr) {
++      var _getTextWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee16(name, key, resolverAddr) {
 +        var namehash, provider, Resolver, addr;
-+        return _regenerator["default"].wrap(function _callee13$(_context13) {
++        return _regenerator["default"].wrap(function _callee16$(_context16) {
 +          while (1) {
-+            switch (_context13.prev = _context13.next) {
++            switch (_context16.prev = _context16.next) {
 +              case 0:
 +                if (!(parseInt(resolverAddr, 16) === 0)) {
-+                  _context13.next = 2;
++                  _context16.next = 2;
 +                  break;
 +                }
 +
-+                return _context13.abrupt("return", '');
++                return _context16.abrupt("return", '');
 +
 +              case 2:
 +                namehash = getNamehash(name);
-+                _context13.prev = 3;
-+                _context13.next = 6;
++                _context16.prev = 3;
++                _context16.next = 6;
 +                return (0, _web.getProvider)();
 +
 +              case 6:
-+                provider = _context13.sent;
++                provider = _context16.sent;
 +                Resolver = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context13.next = 10;
++                _context16.next = 10;
 +                return Resolver.text(namehash, key);
 +
 +              case 10:
-+                addr = _context13.sent;
-+                return _context13.abrupt("return", addr);
++                addr = _context16.sent;
++                return _context16.abrupt("return", addr);
 +
 +              case 14:
-+                _context13.prev = 14;
-+                _context13.t0 = _context13["catch"](3);
++                _context16.prev = 14;
++                _context16.t0 = _context16["catch"](3);
 +                console.warn('Error getting text record on the resolver contract, are you sure the resolver address is a resolver contract?');
-+                return _context13.abrupt("return", '');
++                return _context16.abrupt("return", '');
 +
 +              case 18:
 +              case "end":
-+                return _context13.stop();
++                return _context16.stop();
 +            }
 +          }
-+        }, _callee13, null, [[3, 14]]);
++        }, _callee16, null, [[3, 14]]);
 +      }));
 +
-+      function getTextWithResolver(_x23, _x24, _x25) {
++      function getTextWithResolver(_x28, _x29, _x30) {
 +        return _getTextWithResolver.apply(this, arguments);
 +      }
 +
@@ -1249,29 +2526,29 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getName",
 +    value: function () {
-+      var _getName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee14(address) {
++      var _getName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee17(address) {
 +        var reverseNode, resolverAddr;
-+        return _regenerator["default"].wrap(function _callee14$(_context14) {
++        return _regenerator["default"].wrap(function _callee17$(_context17) {
 +          while (1) {
-+            switch (_context14.prev = _context14.next) {
++            switch (_context17.prev = _context17.next) {
 +              case 0:
 +                reverseNode = "".concat(address.slice(2), ".addr.reverse");
-+                _context14.next = 3;
++                _context17.next = 3;
 +                return this.getResolver(reverseNode);
 +
 +              case 3:
-+                resolverAddr = _context14.sent;
-+                return _context14.abrupt("return", this.getNameWithResolver(address, resolverAddr));
++                resolverAddr = _context17.sent;
++                return _context17.abrupt("return", this.getNameWithResolver(address, resolverAddr));
 +
 +              case 5:
 +              case "end":
-+                return _context14.stop();
++                return _context17.stop();
 +            }
 +          }
-+        }, _callee14, this);
++        }, _callee17, this);
 +      }));
 +
-+      function getName(_x26) {
++      function getName(_x31) {
 +        return _getName.apply(this, arguments);
 +      }
 +
@@ -1280,58 +2557,58 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getNameWithResolver",
 +    value: function () {
-+      var _getNameWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee15(address, resolverAddr) {
++      var _getNameWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee18(address, resolverAddr) {
 +        var reverseNode, reverseNamehash, provider, Resolver, name;
-+        return _regenerator["default"].wrap(function _callee15$(_context15) {
++        return _regenerator["default"].wrap(function _callee18$(_context18) {
 +          while (1) {
-+            switch (_context15.prev = _context15.next) {
++            switch (_context18.prev = _context18.next) {
 +              case 0:
 +                reverseNode = "".concat(address.slice(2), ".addr.reverse");
 +                reverseNamehash = getNamehash(reverseNode);
 +
 +                if (!(parseInt(resolverAddr, 16) === 0)) {
-+                  _context15.next = 4;
++                  _context18.next = 4;
 +                  break;
 +                }
 +
-+                return _context15.abrupt("return", {
++                return _context18.abrupt("return", {
 +                  name: null
 +                });
 +
 +              case 4:
-+                _context15.prev = 4;
-+                _context15.next = 7;
++                _context18.prev = 4;
++                _context18.next = 7;
 +                return (0, _web.getProvider)();
 +
 +              case 7:
-+                provider = _context15.sent;
++                provider = _context18.sent;
 +                Resolver = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context15.next = 11;
++                _context18.next = 11;
 +                return Resolver.name(reverseNamehash);
 +
 +              case 11:
-+                name = _context15.sent;
-+                return _context15.abrupt("return", {
++                name = _context18.sent;
++                return _context18.abrupt("return", {
 +                  name: name
 +                });
 +
 +              case 15:
-+                _context15.prev = 15;
-+                _context15.t0 = _context15["catch"](4);
-+                console.log("Error getting name for reverse record of ".concat(address), _context15.t0);
++                _context18.prev = 15;
++                _context18.t0 = _context18["catch"](4);
++                console.log("Error getting name for reverse record of ".concat(address), _context18.t0);
 +
 +              case 18:
 +              case "end":
-+                return _context15.stop();
++                return _context18.stop();
 +            }
 +          }
-+        }, _callee15, null, [[4, 15]]);
++        }, _callee18, null, [[4, 15]]);
 +      }));
 +
-+      function getNameWithResolver(_x27, _x28) {
++      function getNameWithResolver(_x32, _x33) {
 +        return _getNameWithResolver.apply(this, arguments);
 +      }
 +
@@ -1340,24 +2617,24 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "isMigrated",
 +    value: function () {
-+      var _isMigrated = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee16(name) {
++      var _isMigrated = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee19(name) {
 +        var namehash;
-+        return _regenerator["default"].wrap(function _callee16$(_context16) {
++        return _regenerator["default"].wrap(function _callee19$(_context19) {
 +          while (1) {
-+            switch (_context16.prev = _context16.next) {
++            switch (_context19.prev = _context19.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                return _context16.abrupt("return", this.ENS.recordExists(namehash));
++                return _context19.abrupt("return", this.ENS.recordExists(namehash));
 +
 +              case 2:
 +              case "end":
-+                return _context16.stop();
++                return _context19.stop();
 +            }
 +          }
-+        }, _callee16, this);
++        }, _callee19, this);
 +      }));
 +
-+      function isMigrated(_x29) {
++      function isMigrated(_x34) {
 +        return _isMigrated.apply(this, arguments);
 +      }
 +
@@ -1366,34 +2643,34 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getResolverDetails",
 +    value: function () {
-+      var _getResolverDetails = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee17(node) {
++      var _getResolverDetails = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee20(node) {
 +        var addrPromise, contentPromise, _yield$Promise$all, _yield$Promise$all2, addr, content;
 +
-+        return _regenerator["default"].wrap(function _callee17$(_context17) {
++        return _regenerator["default"].wrap(function _callee20$(_context20) {
 +          while (1) {
-+            switch (_context17.prev = _context17.next) {
++            switch (_context20.prev = _context20.next) {
 +              case 0:
-+                _context17.prev = 0;
++                _context20.prev = 0;
 +                addrPromise = this.getAddress(node.name);
 +                contentPromise = this.getContent(node.name);
-+                _context17.next = 5;
++                _context20.next = 5;
 +                return Promise.all([addrPromise, contentPromise]);
 +
 +              case 5:
-+                _yield$Promise$all = _context17.sent;
++                _yield$Promise$all = _context20.sent;
 +                _yield$Promise$all2 = (0, _slicedToArray2["default"])(_yield$Promise$all, 2);
 +                addr = _yield$Promise$all2[0];
 +                content = _yield$Promise$all2[1];
-+                return _context17.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
++                return _context20.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
 +                  addr: addr,
 +                  content: content.value,
 +                  contentType: content.contentType
 +                }));
 +
 +              case 12:
-+                _context17.prev = 12;
-+                _context17.t0 = _context17["catch"](0);
-+                return _context17.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
++                _context20.prev = 12;
++                _context20.t0 = _context20["catch"](0);
++                return _context20.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
 +                  addr: '0x0',
 +                  content: '0x0',
 +                  contentType: 'error'
@@ -1401,13 +2678,13 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +
 +              case 15:
 +              case "end":
-+                return _context17.stop();
++                return _context20.stop();
 +            }
 +          }
-+        }, _callee17, this, [[0, 12]]);
++        }, _callee20, this, [[0, 12]]);
 +      }));
 +
-+      function getResolverDetails(_x30) {
++      function getResolverDetails(_x35) {
 +        return _getResolverDetails.apply(this, arguments);
 +      }
 +
@@ -1416,28 +2693,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getSubdomains",
 +    value: function () {
-+      var _getSubdomains = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee18(name) {
++      var _getSubdomains = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee21(name) {
 +        var _this = this;
 +
 +        var startBlock, namehash, rawLogs, flattenedLogs, logs, labelhashes, remoteLabels, localLabels, labels, ownerPromises;
-+        return _regenerator["default"].wrap(function _callee18$(_context18) {
++        return _regenerator["default"].wrap(function _callee21$(_context21) {
 +          while (1) {
-+            switch (_context18.prev = _context18.next) {
++            switch (_context21.prev = _context21.next) {
 +              case 0:
-+                _context18.next = 2;
++                _context21.next = 2;
 +                return (0, _utils.getEnsStartBlock)();
 +
 +              case 2:
-+                startBlock = _context18.sent;
++                startBlock = _context21.sent;
 +                namehash = getNamehash(name);
-+                _context18.next = 6;
++                _context21.next = 6;
 +                return this.getENSEvent('NewOwner', {
 +                  topics: [namehash],
 +                  fromBlock: startBlock
 +                });
 +
 +              case 6:
-+                rawLogs = _context18.sent;
++                rawLogs = _context21.sent;
 +                flattenedLogs = rawLogs.map(function (log) {
 +                  return log.values;
 +                });
@@ -1446,17 +2723,17 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +                labelhashes = logs.map(function (log) {
 +                  return log.label;
 +                });
-+                _context18.next = 13;
++                _context21.next = 13;
 +                return _preimage.decryptHashes.apply(void 0, (0, _toConsumableArray2["default"])(labelhashes));
 +
 +              case 13:
-+                remoteLabels = _context18.sent;
++                remoteLabels = _context21.sent;
 +                localLabels = _utils.checkLabels.apply(void 0, (0, _toConsumableArray2["default"])(labelhashes));
 +                labels = (0, _utils.mergeLabels)(localLabels, remoteLabels);
 +                ownerPromises = labels.map(function (label) {
 +                  return _this.getOwner("".concat(label, ".").concat(name));
 +                });
-+                return _context18.abrupt("return", Promise.all(ownerPromises).then(function (owners) {
++                return _context21.abrupt("return", Promise.all(ownerPromises).then(function (owners) {
 +                  return owners.map(function (owner, index) {
 +                    return {
 +                      label: labels[index],
@@ -1471,13 +2748,13 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +
 +              case 18:
 +              case "end":
-+                return _context18.stop();
++                return _context21.stop();
 +            }
 +          }
-+        }, _callee18, this);
++        }, _callee21, this);
 +      }));
 +
-+      function getSubdomains(_x31) {
++      function getSubdomains(_x36) {
 +        return _getSubdomains.apply(this, arguments);
 +      }
 +
@@ -1486,20 +2763,20 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getDomainDetails",
 +    value: function () {
-+      var _getDomainDetails = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee19(name) {
++      var _getDomainDetails = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee22(name) {
 +        var nameArray, labelhash, _yield$Promise$all3, _yield$Promise$all4, owner, resolver, node, hasResolver;
 +
-+        return _regenerator["default"].wrap(function _callee19$(_context19) {
++        return _regenerator["default"].wrap(function _callee22$(_context22) {
 +          while (1) {
-+            switch (_context19.prev = _context19.next) {
++            switch (_context22.prev = _context22.next) {
 +              case 0:
 +                nameArray = name.split('.');
 +                labelhash = getLabelhash(nameArray[0]);
-+                _context19.next = 4;
++                _context22.next = 4;
 +                return Promise.all([this.getOwner(name), this.getResolver(name)]);
 +
 +              case 4:
-+                _yield$Promise$all3 = _context19.sent;
++                _yield$Promise$all3 = _context22.sent;
 +                _yield$Promise$all4 = (0, _slicedToArray2["default"])(_yield$Promise$all3, 2);
 +                owner = _yield$Promise$all4[0];
 +                resolver = _yield$Promise$all4[1];
@@ -1513,27 +2790,27 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +                hasResolver = parseInt(node.resolver, 16) !== 0;
 +
 +                if (!hasResolver) {
-+                  _context19.next = 12;
++                  _context22.next = 12;
 +                  break;
 +                }
 +
-+                return _context19.abrupt("return", this.getResolverDetails(node));
++                return _context22.abrupt("return", this.getResolverDetails(node));
 +
 +              case 12:
-+                return _context19.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
++                return _context22.abrupt("return", _objectSpread(_objectSpread({}, node), {}, {
 +                  addr: null,
 +                  content: null
 +                }));
 +
 +              case 13:
 +              case "end":
-+                return _context19.stop();
++                return _context22.stop();
 +            }
 +          }
-+        }, _callee19, this);
++        }, _callee22, this);
 +      }));
 +
-+      function getDomainDetails(_x32) {
++      function getDomainDetails(_x37) {
 +        return _getDomainDetails.apply(this, arguments);
 +      }
 +
@@ -1544,137 +2821,22 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setOwner",
 +    value: function () {
-+      var _setOwner = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee20(name, newOwner) {
++      var _setOwner = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee23(name, newOwner) {
 +        var ENSWithoutSigner, signer, _ENS, namehash;
-+
-+        return _regenerator["default"].wrap(function _callee20$(_context20) {
-+          while (1) {
-+            switch (_context20.prev = _context20.next) {
-+              case 0:
-+                ENSWithoutSigner = this.ENS;
-+                _context20.next = 3;
-+                return (0, _web.getSigner)();
-+
-+              case 3:
-+                signer = _context20.sent;
-+                _ENS = ENSWithoutSigner.connect(signer);
-+                namehash = getNamehash(name);
-+                return _context20.abrupt("return", _ENS.setOwner(namehash, newOwner));
-+
-+              case 7:
-+              case "end":
-+                return _context20.stop();
-+            }
-+          }
-+        }, _callee20, this);
-+      }));
-+
-+      function setOwner(_x33, _x34) {
-+        return _setOwner.apply(this, arguments);
-+      }
-+
-+      return setOwner;
-+    }()
-+  }, {
-+    key: "setSubnodeOwner",
-+    value: function () {
-+      var _setSubnodeOwner = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee21(name, newOwner) {
-+        var ENSWithoutSigner, signer, _ENS2, nameArray, label, node, labelhash, parentNamehash;
-+
-+        return _regenerator["default"].wrap(function _callee21$(_context21) {
-+          while (1) {
-+            switch (_context21.prev = _context21.next) {
-+              case 0:
-+                ENSWithoutSigner = this.ENS;
-+                _context21.next = 3;
-+                return (0, _web.getSigner)();
-+
-+              case 3:
-+                signer = _context21.sent;
-+                _ENS2 = ENSWithoutSigner.connect(signer);
-+                nameArray = name.split('.');
-+                label = nameArray[0];
-+                node = nameArray.slice(1).join('.');
-+                labelhash = getLabelhash(label);
-+                parentNamehash = getNamehash(node);
-+                return _context21.abrupt("return", _ENS2.setSubnodeOwner(parentNamehash, labelhash, newOwner));
-+
-+              case 11:
-+              case "end":
-+                return _context21.stop();
-+            }
-+          }
-+        }, _callee21, this);
-+      }));
-+
-+      function setSubnodeOwner(_x35, _x36) {
-+        return _setSubnodeOwner.apply(this, arguments);
-+      }
-+
-+      return setSubnodeOwner;
-+    }()
-+  }, {
-+    key: "setSubnodeRecord",
-+    value: function () {
-+      var _setSubnodeRecord = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee22(name, newOwner, resolver) {
-+        var ENSWithoutSigner, signer, _ENS3, nameArray, label, node, labelhash, parentNamehash, ttl;
-+
-+        return _regenerator["default"].wrap(function _callee22$(_context22) {
-+          while (1) {
-+            switch (_context22.prev = _context22.next) {
-+              case 0:
-+                ENSWithoutSigner = this.ENS;
-+                _context22.next = 3;
-+                return (0, _web.getSigner)();
-+
-+              case 3:
-+                signer = _context22.sent;
-+                _ENS3 = ENSWithoutSigner.connect(signer);
-+                nameArray = name.split('.');
-+                label = nameArray[0];
-+                node = nameArray.slice(1).join('.');
-+                labelhash = getLabelhash(label);
-+                parentNamehash = getNamehash(node);
-+                _context22.next = 12;
-+                return this.getTTL(name);
-+
-+              case 12:
-+                ttl = _context22.sent;
-+                return _context22.abrupt("return", _ENS3.setSubnodeRecord(parentNamehash, labelhash, newOwner, resolver, ttl));
-+
-+              case 14:
-+              case "end":
-+                return _context22.stop();
-+            }
-+          }
-+        }, _callee22, this);
-+      }));
-+
-+      function setSubnodeRecord(_x37, _x38, _x39) {
-+        return _setSubnodeRecord.apply(this, arguments);
-+      }
-+
-+      return setSubnodeRecord;
-+    }()
-+  }, {
-+    key: "setResolver",
-+    value: function () {
-+      var _setResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee23(name, resolver) {
-+        var namehash, ENSWithoutSigner, signer, _ENS4;
 +
 +        return _regenerator["default"].wrap(function _callee23$(_context23) {
 +          while (1) {
 +            switch (_context23.prev = _context23.next) {
 +              case 0:
-+                namehash = getNamehash(name);
 +                ENSWithoutSigner = this.ENS;
-+                _context23.next = 4;
++                _context23.next = 3;
 +                return (0, _web.getSigner)();
 +
-+              case 4:
++              case 3:
 +                signer = _context23.sent;
-+                _ENS4 = ENSWithoutSigner.connect(signer);
-+                return _context23.abrupt("return", _ENS4.setResolver(namehash, resolver));
++                _ENS = ENSWithoutSigner.connect(signer);
++                namehash = getNamehash(name);
++                return _context23.abrupt("return", _ENS.setOwner(namehash, newOwner));
 +
 +              case 7:
 +              case "end":
@@ -1684,7 +2846,122 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +        }, _callee23, this);
 +      }));
 +
-+      function setResolver(_x40, _x41) {
++      function setOwner(_x38, _x39) {
++        return _setOwner.apply(this, arguments);
++      }
++
++      return setOwner;
++    }()
++  }, {
++    key: "setSubnodeOwner",
++    value: function () {
++      var _setSubnodeOwner = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee24(name, newOwner) {
++        var ENSWithoutSigner, signer, _ENS2, nameArray, label, node, labelhash, parentNamehash;
++
++        return _regenerator["default"].wrap(function _callee24$(_context24) {
++          while (1) {
++            switch (_context24.prev = _context24.next) {
++              case 0:
++                ENSWithoutSigner = this.ENS;
++                _context24.next = 3;
++                return (0, _web.getSigner)();
++
++              case 3:
++                signer = _context24.sent;
++                _ENS2 = ENSWithoutSigner.connect(signer);
++                nameArray = name.split('.');
++                label = nameArray[0];
++                node = nameArray.slice(1).join('.');
++                labelhash = getLabelhash(label);
++                parentNamehash = getNamehash(node);
++                return _context24.abrupt("return", _ENS2.setSubnodeOwner(parentNamehash, labelhash, newOwner));
++
++              case 11:
++              case "end":
++                return _context24.stop();
++            }
++          }
++        }, _callee24, this);
++      }));
++
++      function setSubnodeOwner(_x40, _x41) {
++        return _setSubnodeOwner.apply(this, arguments);
++      }
++
++      return setSubnodeOwner;
++    }()
++  }, {
++    key: "setSubnodeRecord",
++    value: function () {
++      var _setSubnodeRecord = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee25(name, newOwner, resolver) {
++        var ENSWithoutSigner, signer, _ENS3, nameArray, label, node, labelhash, parentNamehash, ttl;
++
++        return _regenerator["default"].wrap(function _callee25$(_context25) {
++          while (1) {
++            switch (_context25.prev = _context25.next) {
++              case 0:
++                ENSWithoutSigner = this.ENS;
++                _context25.next = 3;
++                return (0, _web.getSigner)();
++
++              case 3:
++                signer = _context25.sent;
++                _ENS3 = ENSWithoutSigner.connect(signer);
++                nameArray = name.split('.');
++                label = nameArray[0];
++                node = nameArray.slice(1).join('.');
++                labelhash = getLabelhash(label);
++                parentNamehash = getNamehash(node);
++                _context25.next = 12;
++                return this.getTTL(name);
++
++              case 12:
++                ttl = _context25.sent;
++                return _context25.abrupt("return", _ENS3.setSubnodeRecord(parentNamehash, labelhash, newOwner, resolver, ttl));
++
++              case 14:
++              case "end":
++                return _context25.stop();
++            }
++          }
++        }, _callee25, this);
++      }));
++
++      function setSubnodeRecord(_x42, _x43, _x44) {
++        return _setSubnodeRecord.apply(this, arguments);
++      }
++
++      return setSubnodeRecord;
++    }()
++  }, {
++    key: "setResolver",
++    value: function () {
++      var _setResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee26(name, resolver) {
++        var namehash, ENSWithoutSigner, signer, _ENS4;
++
++        return _regenerator["default"].wrap(function _callee26$(_context26) {
++          while (1) {
++            switch (_context26.prev = _context26.next) {
++              case 0:
++                namehash = getNamehash(name);
++                ENSWithoutSigner = this.ENS;
++                _context26.next = 4;
++                return (0, _web.getSigner)();
++
++              case 4:
++                signer = _context26.sent;
++                _ENS4 = ENSWithoutSigner.connect(signer);
++                return _context26.abrupt("return", _ENS4.setResolver(namehash, resolver));
++
++              case 7:
++              case "end":
++                return _context26.stop();
++            }
++          }
++        }, _callee26, this);
++      }));
++
++      function setResolver(_x45, _x46) {
 +        return _setResolver.apply(this, arguments);
 +      }
 +
@@ -1693,28 +2970,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setAddress",
 +    value: function () {
-+      var _setAddress = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee24(name, address) {
++      var _setAddress = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee27(name, address) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee24$(_context24) {
++        return _regenerator["default"].wrap(function _callee27$(_context27) {
 +          while (1) {
-+            switch (_context24.prev = _context24.next) {
++            switch (_context27.prev = _context27.next) {
 +              case 0:
-+                _context24.next = 2;
++                _context27.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context24.sent;
-+                return _context24.abrupt("return", this.setAddressWithResolver(name, address, resolverAddr));
++                resolverAddr = _context27.sent;
++                return _context27.abrupt("return", this.setAddressWithResolver(name, address, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context24.stop();
++                return _context27.stop();
 +            }
 +          }
-+        }, _callee24, this);
++        }, _callee27, this);
 +      }));
 +
-+      function setAddress(_x42, _x43) {
++      function setAddress(_x47, _x48) {
 +        return _setAddress.apply(this, arguments);
 +      }
 +
@@ -1723,39 +3000,39 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setAddressWithResolver",
 +    value: function () {
-+      var _setAddressWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee25(name, address, resolverAddr) {
++      var _setAddressWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee28(name, address, resolverAddr) {
 +        var namehash, provider, ResolverWithoutSigner, signer, Resolver;
-+        return _regenerator["default"].wrap(function _callee25$(_context25) {
++        return _regenerator["default"].wrap(function _callee28$(_context28) {
 +          while (1) {
-+            switch (_context25.prev = _context25.next) {
++            switch (_context28.prev = _context28.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                _context25.next = 3;
++                _context28.next = 3;
 +                return (0, _web.getProvider)();
 +
 +              case 3:
-+                provider = _context25.sent;
++                provider = _context28.sent;
 +                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context25.next = 7;
++                _context28.next = 7;
 +                return (0, _web.getSigner)();
 +
 +              case 7:
-+                signer = _context25.sent;
++                signer = _context28.sent;
 +                Resolver = ResolverWithoutSigner.connect(signer);
-+                return _context25.abrupt("return", Resolver['setAddr(bytes32,address)'](namehash, address));
++                return _context28.abrupt("return", Resolver['setAddr(bytes32,address)'](namehash, address));
 +
 +              case 10:
 +              case "end":
-+                return _context25.stop();
++                return _context28.stop();
 +            }
 +          }
-+        }, _callee25);
++        }, _callee28);
 +      }));
 +
-+      function setAddressWithResolver(_x44, _x45, _x46) {
++      function setAddressWithResolver(_x49, _x50, _x51) {
 +        return _setAddressWithResolver.apply(this, arguments);
 +      }
 +
@@ -1764,28 +3041,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setAddr",
 +    value: function () {
-+      var _setAddr = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee26(name, key, address) {
++      var _setAddr = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee29(name, key, address) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee26$(_context26) {
++        return _regenerator["default"].wrap(function _callee29$(_context29) {
 +          while (1) {
-+            switch (_context26.prev = _context26.next) {
++            switch (_context29.prev = _context29.next) {
 +              case 0:
-+                _context26.next = 2;
++                _context29.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context26.sent;
-+                return _context26.abrupt("return", this.setAddrWithResolver(name, key, address, resolverAddr));
++                resolverAddr = _context29.sent;
++                return _context29.abrupt("return", this.setAddrWithResolver(name, key, address, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context26.stop();
++                return _context29.stop();
 +            }
 +          }
-+        }, _callee26, this);
++        }, _callee29, this);
 +      }));
 +
-+      function setAddr(_x47, _x48, _x49) {
++      function setAddr(_x52, _x53, _x54) {
 +        return _setAddr.apply(this, arguments);
 +      }
 +
@@ -1794,28 +3071,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setAddrWithResolver",
 +    value: function () {
-+      var _setAddrWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee27(name, key, address, resolverAddr) {
++      var _setAddrWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee30(name, key, address, resolverAddr) {
 +        var namehash, provider, ResolverWithoutSigner, signer, Resolver, _formatsByName$key2, decoder, coinType, addressAsBytes;
 +
-+        return _regenerator["default"].wrap(function _callee27$(_context27) {
++        return _regenerator["default"].wrap(function _callee30$(_context30) {
 +          while (1) {
-+            switch (_context27.prev = _context27.next) {
++            switch (_context30.prev = _context30.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                _context27.next = 3;
++                _context30.next = 3;
 +                return (0, _web.getProvider)();
 +
 +              case 3:
-+                provider = _context27.sent;
++                provider = _context30.sent;
 +                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context27.next = 7;
++                _context30.next = 7;
 +                return (0, _web.getSigner)();
 +
 +              case 7:
-+                signer = _context27.sent;
++                signer = _context30.sent;
 +                Resolver = ResolverWithoutSigner.connect(signer);
 +                _formatsByName$key2 = _addressEncoder.formatsByName[key], decoder = _formatsByName$key2.decoder, coinType = _formatsByName$key2.coinType;
 +
@@ -1825,17 +3102,17 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +                  addressAsBytes = decoder(address);
 +                }
 +
-+                return _context27.abrupt("return", Resolver['setAddr(bytes32,uint256,bytes)'](namehash, coinType, addressAsBytes));
++                return _context30.abrupt("return", Resolver['setAddr(bytes32,uint256,bytes)'](namehash, coinType, addressAsBytes));
 +
 +              case 12:
 +              case "end":
-+                return _context27.stop();
++                return _context30.stop();
 +            }
 +          }
-+        }, _callee27);
++        }, _callee30);
 +      }));
 +
-+      function setAddrWithResolver(_x50, _x51, _x52, _x53) {
++      function setAddrWithResolver(_x55, _x56, _x57, _x58) {
 +        return _setAddrWithResolver.apply(this, arguments);
 +      }
 +
@@ -1844,28 +3121,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setContent",
 +    value: function () {
-+      var _setContent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee28(name, content) {
++      var _setContent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee31(name, content) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee28$(_context28) {
++        return _regenerator["default"].wrap(function _callee31$(_context31) {
 +          while (1) {
-+            switch (_context28.prev = _context28.next) {
++            switch (_context31.prev = _context31.next) {
 +              case 0:
-+                _context28.next = 2;
++                _context31.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context28.sent;
-+                return _context28.abrupt("return", this.setContentWithResolver(name, content, resolverAddr));
++                resolverAddr = _context31.sent;
++                return _context31.abrupt("return", this.setContentWithResolver(name, content, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context28.stop();
++                return _context31.stop();
 +            }
 +          }
-+        }, _callee28, this);
++        }, _callee31, this);
 +      }));
 +
-+      function setContent(_x54, _x55) {
++      function setContent(_x59, _x60) {
 +        return _setContent.apply(this, arguments);
 +      }
 +
@@ -1874,39 +3151,39 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setContentWithResolver",
 +    value: function () {
-+      var _setContentWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee29(name, content, resolverAddr) {
++      var _setContentWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee32(name, content, resolverAddr) {
 +        var namehash, provider, ResolverWithoutSigner, signer, Resolver;
-+        return _regenerator["default"].wrap(function _callee29$(_context29) {
++        return _regenerator["default"].wrap(function _callee32$(_context32) {
 +          while (1) {
-+            switch (_context29.prev = _context29.next) {
++            switch (_context32.prev = _context32.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                _context29.next = 3;
++                _context32.next = 3;
 +                return (0, _web.getProvider)();
 +
 +              case 3:
-+                provider = _context29.sent;
++                provider = _context32.sent;
 +                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context29.next = 7;
++                _context32.next = 7;
 +                return (0, _web.getSigner)();
 +
 +              case 7:
-+                signer = _context29.sent;
++                signer = _context32.sent;
 +                Resolver = ResolverWithoutSigner.connect(signer);
-+                return _context29.abrupt("return", Resolver.setContent(namehash, content));
++                return _context32.abrupt("return", Resolver.setContent(namehash, content));
 +
 +              case 10:
 +              case "end":
-+                return _context29.stop();
++                return _context32.stop();
 +            }
 +          }
-+        }, _callee29);
++        }, _callee32);
 +      }));
 +
-+      function setContentWithResolver(_x56, _x57, _x58) {
++      function setContentWithResolver(_x61, _x62, _x63) {
 +        return _setContentWithResolver.apply(this, arguments);
 +      }
 +
@@ -1915,28 +3192,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setContenthash",
 +    value: function () {
-+      var _setContenthash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee30(name, content) {
++      var _setContenthash = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee33(name, content) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee30$(_context30) {
++        return _regenerator["default"].wrap(function _callee33$(_context33) {
 +          while (1) {
-+            switch (_context30.prev = _context30.next) {
++            switch (_context33.prev = _context33.next) {
 +              case 0:
-+                _context30.next = 2;
++                _context33.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context30.sent;
-+                return _context30.abrupt("return", this.setContenthashWithResolver(name, content, resolverAddr));
++                resolverAddr = _context33.sent;
++                return _context33.abrupt("return", this.setContenthashWithResolver(name, content, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context30.stop();
++                return _context33.stop();
 +            }
 +          }
-+        }, _callee30, this);
++        }, _callee33, this);
 +      }));
 +
-+      function setContenthash(_x59, _x60) {
++      function setContenthash(_x64, _x65) {
 +        return _setContenthash.apply(this, arguments);
 +      }
 +
@@ -1945,11 +3222,11 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setContenthashWithResolver",
 +    value: function () {
-+      var _setContenthashWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee31(name, content, resolverAddr) {
++      var _setContenthashWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee34(name, content, resolverAddr) {
 +        var encodedContenthash, namehash, provider, ResolverWithoutSigner, signer, Resolver;
-+        return _regenerator["default"].wrap(function _callee31$(_context31) {
++        return _regenerator["default"].wrap(function _callee34$(_context34) {
 +          while (1) {
-+            switch (_context31.prev = _context31.next) {
++            switch (_context34.prev = _context34.next) {
 +              case 0:
 +                encodedContenthash = content;
 +
@@ -1958,32 +3235,32 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +                }
 +
 +                namehash = getNamehash(name);
-+                _context31.next = 5;
++                _context34.next = 5;
 +                return (0, _web.getProvider)();
 +
 +              case 5:
-+                provider = _context31.sent;
++                provider = _context34.sent;
 +                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context31.next = 9;
++                _context34.next = 9;
 +                return (0, _web.getSigner)();
 +
 +              case 9:
-+                signer = _context31.sent;
++                signer = _context34.sent;
 +                Resolver = ResolverWithoutSigner.connect(signer);
-+                return _context31.abrupt("return", Resolver.setContenthash(namehash, encodedContenthash));
++                return _context34.abrupt("return", Resolver.setContenthash(namehash, encodedContenthash));
 +
 +              case 12:
 +              case "end":
-+                return _context31.stop();
++                return _context34.stop();
 +            }
 +          }
-+        }, _callee31);
++        }, _callee34);
 +      }));
 +
-+      function setContenthashWithResolver(_x61, _x62, _x63) {
++      function setContenthashWithResolver(_x66, _x67, _x68) {
 +        return _setContenthashWithResolver.apply(this, arguments);
 +      }
 +
@@ -1992,28 +3269,28 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setText",
 +    value: function () {
-+      var _setText = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee32(name, key, recordValue) {
++      var _setText = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee35(name, key, recordValue) {
 +        var resolverAddr;
-+        return _regenerator["default"].wrap(function _callee32$(_context32) {
++        return _regenerator["default"].wrap(function _callee35$(_context35) {
 +          while (1) {
-+            switch (_context32.prev = _context32.next) {
++            switch (_context35.prev = _context35.next) {
 +              case 0:
-+                _context32.next = 2;
++                _context35.next = 2;
 +                return this.getResolver(name);
 +
 +              case 2:
-+                resolverAddr = _context32.sent;
-+                return _context32.abrupt("return", this.setTextWithResolver(name, key, recordValue, resolverAddr));
++                resolverAddr = _context35.sent;
++                return _context35.abrupt("return", this.setTextWithResolver(name, key, recordValue, resolverAddr));
 +
 +              case 4:
 +              case "end":
-+                return _context32.stop();
++                return _context35.stop();
 +            }
 +          }
-+        }, _callee32, this);
++        }, _callee35, this);
 +      }));
 +
-+      function setText(_x64, _x65, _x66) {
++      function setText(_x69, _x70, _x71) {
 +        return _setText.apply(this, arguments);
 +      }
 +
@@ -2022,39 +3299,39 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "setTextWithResolver",
 +    value: function () {
-+      var _setTextWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee33(name, key, recordValue, resolverAddr) {
++      var _setTextWithResolver = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee36(name, key, recordValue, resolverAddr) {
 +        var namehash, provider, ResolverWithoutSigner, signer, Resolver;
-+        return _regenerator["default"].wrap(function _callee33$(_context33) {
++        return _regenerator["default"].wrap(function _callee36$(_context36) {
 +          while (1) {
-+            switch (_context33.prev = _context33.next) {
++            switch (_context36.prev = _context36.next) {
 +              case 0:
 +                namehash = getNamehash(name);
-+                _context33.next = 3;
++                _context36.next = 3;
 +                return (0, _web.getProvider)();
 +
 +              case 3:
-+                provider = _context33.sent;
++                provider = _context36.sent;
 +                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
 +                  address: resolverAddr,
 +                  provider: provider
 +                });
-+                _context33.next = 7;
++                _context36.next = 7;
 +                return (0, _web.getSigner)();
 +
 +              case 7:
-+                signer = _context33.sent;
++                signer = _context36.sent;
 +                Resolver = ResolverWithoutSigner.connect(signer);
-+                return _context33.abrupt("return", Resolver.setText(namehash, key, recordValue));
++                return _context36.abrupt("return", Resolver.setText(namehash, key, recordValue));
 +
 +              case 10:
 +              case "end":
-+                return _context33.stop();
++                return _context36.stop();
 +            }
 +          }
-+        }, _callee33);
++        }, _callee36);
 +      }));
 +
-+      function setTextWithResolver(_x67, _x68, _x69, _x70) {
++      function setTextWithResolver(_x72, _x73, _x74, _x75) {
 +        return _setTextWithResolver.apply(this, arguments);
 +      }
 +
@@ -2063,154 +3340,8 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "createSubdomain",
 +    value: function () {
-+      var _createSubdomain = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee34(name) {
++      var _createSubdomain = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee37(name) {
 +        var account, publicResolverAddress;
-+        return _regenerator["default"].wrap(function _callee34$(_context34) {
-+          while (1) {
-+            switch (_context34.prev = _context34.next) {
-+              case 0:
-+                _context34.next = 2;
-+                return (0, _web.getAccount)();
-+
-+              case 2:
-+                account = _context34.sent;
-+                _context34.next = 5;
-+                return this.getAddress('resolver.eth');
-+
-+              case 5:
-+                publicResolverAddress = _context34.sent;
-+                _context34.prev = 6;
-+                return _context34.abrupt("return", this.setSubnodeRecord(name, account, publicResolverAddress));
-+
-+              case 10:
-+                _context34.prev = 10;
-+                _context34.t0 = _context34["catch"](6);
-+                console.log('error creating subdomain', _context34.t0);
-+
-+              case 13:
-+              case "end":
-+                return _context34.stop();
-+            }
-+          }
-+        }, _callee34, this, [[6, 10]]);
-+      }));
-+
-+      function createSubdomain(_x71) {
-+        return _createSubdomain.apply(this, arguments);
-+      }
-+
-+      return createSubdomain;
-+    }()
-+  }, {
-+    key: "deleteSubdomain",
-+    value: function () {
-+      var _deleteSubdomain = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee35(name) {
-+        return _regenerator["default"].wrap(function _callee35$(_context35) {
-+          while (1) {
-+            switch (_context35.prev = _context35.next) {
-+              case 0:
-+                _context35.prev = 0;
-+                return _context35.abrupt("return", this.setSubnodeRecord(name, _utils.emptyAddress, _utils.emptyAddress));
-+
-+              case 4:
-+                _context35.prev = 4;
-+                _context35.t0 = _context35["catch"](0);
-+                console.log('error deleting subdomain', _context35.t0);
-+
-+              case 7:
-+              case "end":
-+                return _context35.stop();
-+            }
-+          }
-+        }, _callee35, this, [[0, 4]]);
-+      }));
-+
-+      function deleteSubdomain(_x72) {
-+        return _deleteSubdomain.apply(this, arguments);
-+      }
-+
-+      return deleteSubdomain;
-+    }()
-+  }, {
-+    key: "claimAndSetReverseRecordName",
-+    value: function () {
-+      var _claimAndSetReverseRecordName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee36(name) {
-+        var overrides,
-+            reverseRegistrarAddr,
-+            provider,
-+            reverseRegistrarWithoutSigner,
-+            signer,
-+            reverseRegistrar,
-+            networkId,
-+            gasLimit,
-+            _args36 = arguments;
-+        return _regenerator["default"].wrap(function _callee36$(_context36) {
-+          while (1) {
-+            switch (_context36.prev = _context36.next) {
-+              case 0:
-+                overrides = _args36.length > 1 && _args36[1] !== undefined ? _args36[1] : {};
-+                _context36.next = 3;
-+                return this.getOwner('addr.reverse');
-+
-+              case 3:
-+                reverseRegistrarAddr = _context36.sent;
-+                _context36.next = 6;
-+                return (0, _web.getProvider)(0);
-+
-+              case 6:
-+                provider = _context36.sent;
-+                reverseRegistrarWithoutSigner = (0, _contracts.getReverseRegistrarContract)({
-+                  address: reverseRegistrarAddr,
-+                  provider: provider
-+                });
-+                _context36.next = 10;
-+                return (0, _web.getSigner)();
-+
-+              case 10:
-+                signer = _context36.sent;
-+                reverseRegistrar = reverseRegistrarWithoutSigner.connect(signer);
-+                _context36.next = 14;
-+                return (0, _web.getNetworkId)();
-+
-+              case 14:
-+                networkId = _context36.sent;
-+
-+                if (!(parseInt(networkId) > 1000)) {
-+                  _context36.next = 20;
-+                  break;
-+                }
-+
-+                _context36.next = 18;
-+                return reverseRegistrar.estimateGas.setName(name);
-+
-+              case 18:
-+                gasLimit = _context36.sent;
-+                overrides = _objectSpread({
-+                  gasLimit: gasLimit.toNumber() * 2
-+                }, overrides);
-+
-+              case 20:
-+                return _context36.abrupt("return", reverseRegistrar.setName(name, overrides));
-+
-+              case 21:
-+              case "end":
-+                return _context36.stop();
-+            }
-+          }
-+        }, _callee36, this);
-+      }));
-+
-+      function claimAndSetReverseRecordName(_x73) {
-+        return _claimAndSetReverseRecordName.apply(this, arguments);
-+      }
-+
-+      return claimAndSetReverseRecordName;
-+    }()
-+  }, {
-+    key: "setReverseRecordName",
-+    value: function () {
-+      var _setReverseRecordName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee37(name) {
-+        var account, provider, reverseNode, resolverAddr, ResolverWithoutSigner, signer, Resolver, namehash;
 +        return _regenerator["default"].wrap(function _callee37$(_context37) {
 +          while (1) {
 +            switch (_context37.prev = _context37.next) {
@@ -2221,38 +3352,184 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +              case 2:
 +                account = _context37.sent;
 +                _context37.next = 5;
-+                return (0, _web.getProvider)();
++                return this.getAddress('resolver.eth');
 +
 +              case 5:
-+                provider = _context37.sent;
-+                reverseNode = "".concat(account.slice(2), ".addr.reverse");
-+                _context37.next = 9;
-+                return this.getResolver(reverseNode);
++                publicResolverAddress = _context37.sent;
++                _context37.prev = 6;
++                return _context37.abrupt("return", this.setSubnodeRecord(name, account, publicResolverAddress));
 +
-+              case 9:
-+                resolverAddr = _context37.sent;
-+                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
-+                  address: resolverAddr,
-+                  provider: provider
-+                });
-+                _context37.next = 13;
-+                return (0, _web.getSigner)();
++              case 10:
++                _context37.prev = 10;
++                _context37.t0 = _context37["catch"](6);
++                console.log('error creating subdomain', _context37.t0);
 +
 +              case 13:
-+                signer = _context37.sent;
-+                Resolver = ResolverWithoutSigner.connect(signer);
-+                namehash = getNamehash(reverseNode);
-+                return _context37.abrupt("return", Resolver.setName(namehash, name));
-+
-+              case 17:
 +              case "end":
 +                return _context37.stop();
 +            }
 +          }
-+        }, _callee37, this);
++        }, _callee37, this, [[6, 10]]);
 +      }));
 +
-+      function setReverseRecordName(_x74) {
++      function createSubdomain(_x76) {
++        return _createSubdomain.apply(this, arguments);
++      }
++
++      return createSubdomain;
++    }()
++  }, {
++    key: "deleteSubdomain",
++    value: function () {
++      var _deleteSubdomain = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee38(name) {
++        return _regenerator["default"].wrap(function _callee38$(_context38) {
++          while (1) {
++            switch (_context38.prev = _context38.next) {
++              case 0:
++                _context38.prev = 0;
++                return _context38.abrupt("return", this.setSubnodeRecord(name, _utils.emptyAddress, _utils.emptyAddress));
++
++              case 4:
++                _context38.prev = 4;
++                _context38.t0 = _context38["catch"](0);
++                console.log('error deleting subdomain', _context38.t0);
++
++              case 7:
++              case "end":
++                return _context38.stop();
++            }
++          }
++        }, _callee38, this, [[0, 4]]);
++      }));
++
++      function deleteSubdomain(_x77) {
++        return _deleteSubdomain.apply(this, arguments);
++      }
++
++      return deleteSubdomain;
++    }()
++  }, {
++    key: "claimAndSetReverseRecordName",
++    value: function () {
++      var _claimAndSetReverseRecordName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee39(name) {
++        var overrides,
++            reverseRegistrarAddr,
++            provider,
++            reverseRegistrarWithoutSigner,
++            signer,
++            reverseRegistrar,
++            networkId,
++            gasLimit,
++            _args39 = arguments;
++        return _regenerator["default"].wrap(function _callee39$(_context39) {
++          while (1) {
++            switch (_context39.prev = _context39.next) {
++              case 0:
++                overrides = _args39.length > 1 && _args39[1] !== undefined ? _args39[1] : {};
++                _context39.next = 3;
++                return this.getOwner('addr.reverse');
++
++              case 3:
++                reverseRegistrarAddr = _context39.sent;
++                _context39.next = 6;
++                return (0, _web.getProvider)(0);
++
++              case 6:
++                provider = _context39.sent;
++                reverseRegistrarWithoutSigner = (0, _contracts.getReverseRegistrarContract)({
++                  address: reverseRegistrarAddr,
++                  provider: provider
++                });
++                _context39.next = 10;
++                return (0, _web.getSigner)();
++
++              case 10:
++                signer = _context39.sent;
++                reverseRegistrar = reverseRegistrarWithoutSigner.connect(signer);
++                _context39.next = 14;
++                return (0, _web.getNetworkId)();
++
++              case 14:
++                networkId = _context39.sent;
++
++                if (!(parseInt(networkId) > 1000)) {
++                  _context39.next = 20;
++                  break;
++                }
++
++                _context39.next = 18;
++                return reverseRegistrar.estimateGas.setName(name);
++
++              case 18:
++                gasLimit = _context39.sent;
++                overrides = _objectSpread({
++                  gasLimit: gasLimit.toNumber() * 2
++                }, overrides);
++
++              case 20:
++                return _context39.abrupt("return", reverseRegistrar.setName(name, overrides));
++
++              case 21:
++              case "end":
++                return _context39.stop();
++            }
++          }
++        }, _callee39, this);
++      }));
++
++      function claimAndSetReverseRecordName(_x78) {
++        return _claimAndSetReverseRecordName.apply(this, arguments);
++      }
++
++      return claimAndSetReverseRecordName;
++    }()
++  }, {
++    key: "setReverseRecordName",
++    value: function () {
++      var _setReverseRecordName = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee40(name) {
++        var account, provider, reverseNode, resolverAddr, ResolverWithoutSigner, signer, Resolver, namehash;
++        return _regenerator["default"].wrap(function _callee40$(_context40) {
++          while (1) {
++            switch (_context40.prev = _context40.next) {
++              case 0:
++                _context40.next = 2;
++                return (0, _web.getAccount)();
++
++              case 2:
++                account = _context40.sent;
++                _context40.next = 5;
++                return (0, _web.getProvider)();
++
++              case 5:
++                provider = _context40.sent;
++                reverseNode = "".concat(account.slice(2), ".addr.reverse");
++                _context40.next = 9;
++                return this.getResolver(reverseNode);
++
++              case 9:
++                resolverAddr = _context40.sent;
++                ResolverWithoutSigner = (0, _contracts.getResolverContract)({
++                  address: resolverAddr,
++                  provider: provider
++                });
++                _context40.next = 13;
++                return (0, _web.getSigner)();
++
++              case 13:
++                signer = _context40.sent;
++                Resolver = ResolverWithoutSigner.connect(signer);
++                namehash = getNamehash(reverseNode);
++                return _context40.abrupt("return", Resolver.setName(namehash, name));
++
++              case 17:
++              case "end":
++                return _context40.stop();
++            }
++          }
++        }, _callee40, this);
++      }));
++
++      function setReverseRecordName(_x79) {
 +        return _setReverseRecordName.apply(this, arguments);
 +      }
 +
@@ -2262,19 +3539,19 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +  }, {
 +    key: "getENSEvent",
 +    value: function () {
-+      var _getENSEvent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee38(event, _ref2) {
++      var _getENSEvent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee41(event, _ref2) {
 +        var topics, fromBlock, provider, _ENS5, ensInterface, Event, filter, logs, parsed;
 +
-+        return _regenerator["default"].wrap(function _callee38$(_context38) {
++        return _regenerator["default"].wrap(function _callee41$(_context41) {
 +          while (1) {
-+            switch (_context38.prev = _context38.next) {
++            switch (_context41.prev = _context41.next) {
 +              case 0:
 +                topics = _ref2.topics, fromBlock = _ref2.fromBlock;
-+                _context38.next = 3;
++                _context41.next = 3;
 +                return (0, _web.getWeb3)();
 +
 +              case 3:
-+                provider = _context38.sent;
++                provider = _context41.sent;
 +                _ENS5 = this.ENS;
 +                ensInterface = new _ethers.utils.Interface(_ENS6.abi);
 +                Event = _ENS5.filters[event]();
@@ -2284,26 +3561,26 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 +                  address: Event.address,
 +                  topics: [].concat((0, _toConsumableArray2["default"])(Event.topics), (0, _toConsumableArray2["default"])(topics))
 +                };
-+                _context38.next = 10;
++                _context41.next = 10;
 +                return provider.getLogs(filter);
 +
 +              case 10:
-+                logs = _context38.sent;
++                logs = _context41.sent;
 +                parsed = logs.map(function (log) {
 +                  var parsedLog = ensInterface.parseLog(log);
 +                  return parsedLog;
 +                });
-+                return _context38.abrupt("return", parsed);
++                return _context41.abrupt("return", parsed);
 +
 +              case 13:
 +              case "end":
-+                return _context38.stop();
++                return _context41.stop();
 +            }
 +          }
-+        }, _callee38, this);
++        }, _callee41, this);
 +      }));
 +
-+      function getENSEvent(_x75, _x76) {
++      function getENSEvent(_x80, _x81) {
 +        return _getENSEvent.apply(this, arguments);
 +      }
 +
@@ -2317,7 +3594,7 @@ index 0000000000000000000000000000000000000000..457b1bb45c79f58a40ed328208cd72be
 \ No newline at end of file
 diff --git a/index.d.ts b/index.d.ts
 new file mode 100644
-index 0000000000000000000000000000000000000000..eb161e989f597949fe32eba476431d6c7ec68109
+index 0000000000000000000000000000000000000000..2f3618977b18e9dcb9f4f46fa1a5e53e5c043d82
 --- /dev/null
 +++ b/index.d.ts
 @@ -0,0 +1,23 @@
@@ -2335,27 +3612,27 @@ index 0000000000000000000000000000000000000000..eb161e989f597949fe32eba476431d6c
 +    network: any;
 +    providerObject: any;
 +}>;
++export * from "./constants/interfaces";
++export * from "./contracts";
 +export * from "./ens.js";
 +export * from "./registrar";
-+export * from "./web3";
-+export * from "./constants/interfaces";
 +export * from "./utils";
-+export * from "./contracts";
++export * from "./web3";
 +import { ENS } from "./ens.js";
-+export { utils, ethers } from "ethers";
++export { ethers, utils } from "ethers";
 +//# sourceMappingURL=index.d.ts.map
 \ No newline at end of file
 diff --git a/index.d.ts.map b/index.d.ts.map
 new file mode 100644
-index 0000000000000000000000000000000000000000..d8aedaf05ffdb83f4e6f28c3a2d9e043ec4b47b7
+index 0000000000000000000000000000000000000000..6eb477bada4bd76564d2b0a3abf99bcd00560131
 --- /dev/null
 +++ b/index.d.ts.map
 @@ -0,0 +1 @@
-+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../src/index.js"],"names":[],"mappings":"AAKA;;;;;;;;;;;;;GAoBC"}
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../src/index.js"],"names":[],"mappings":"AAWA;;;;;;;;;;;;;GA6BC"}
 \ No newline at end of file
 diff --git a/index.js b/index.js
 new file mode 100644
-index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9fc2b3478b
+index 0000000000000000000000000000000000000000..8ca7f2d0765054cab7af2a85a0ecee870655aea2
 --- /dev/null
 +++ b/index.js
 @@ -0,0 +1,193 @@
@@ -2368,40 +3645,26 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +});
 +var _exportNames = {
 +  setupENS: true,
-+  utils: true,
-+  ethers: true
++  ethers: true,
++  utils: true
 +};
 +exports.setupENS = setupENS;
-+Object.defineProperty(exports, "utils", {
-+  enumerable: true,
-+  get: function get() {
-+    return _ethers.utils;
-+  }
-+});
 +Object.defineProperty(exports, "ethers", {
 +  enumerable: true,
 +  get: function get() {
 +    return _ethers.ethers;
 +  }
 +});
++Object.defineProperty(exports, "utils", {
++  enumerable: true,
++  get: function get() {
++    return _ethers.utils;
++  }
++});
 +
 +var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 +
 +var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-+
-+var _web = require("./web3");
-+
-+Object.keys(_web).forEach(function (key) {
-+  if (key === "default" || key === "__esModule") return;
-+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-+  if (key in exports && exports[key] === _web[key]) return;
-+  Object.defineProperty(exports, key, {
-+    enumerable: true,
-+    get: function get() {
-+      return _web[key];
-+    }
-+  });
-+});
 +
 +var _ens = require("./ens.js");
 +
@@ -2419,21 +3682,21 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +  });
 +});
 +
-+var _ethers = require("ethers");
++var _web = require("./web3");
 +
-+var _ens2 = require("./ens");
-+
-+Object.keys(_ens2).forEach(function (key) {
++Object.keys(_web).forEach(function (key) {
 +  if (key === "default" || key === "__esModule") return;
 +  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-+  if (key in exports && exports[key] === _ens2[key]) return;
++  if (key in exports && exports[key] === _web[key]) return;
 +  Object.defineProperty(exports, key, {
 +    enumerable: true,
 +    get: function get() {
-+      return _ens2[key];
++      return _web[key];
 +    }
 +  });
 +});
++
++var _ethers = require("ethers");
 +
 +var _interfaces = require("./constants/interfaces");
 +
@@ -2449,20 +3712,6 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +  });
 +});
 +
-+var _utils = require("./utils");
-+
-+Object.keys(_utils).forEach(function (key) {
-+  if (key === "default" || key === "__esModule") return;
-+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-+  if (key in exports && exports[key] === _utils[key]) return;
-+  Object.defineProperty(exports, key, {
-+    enumerable: true,
-+    get: function get() {
-+      return _utils[key];
-+    }
-+  });
-+});
-+
 +var _contracts = require("./contracts");
 +
 +Object.keys(_contracts).forEach(function (key) {
@@ -2473,6 +3722,34 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +    enumerable: true,
 +    get: function get() {
 +      return _contracts[key];
++    }
++  });
++});
++
++var _ens2 = require("./ens");
++
++Object.keys(_ens2).forEach(function (key) {
++  if (key === "default" || key === "__esModule") return;
++  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
++  if (key in exports && exports[key] === _ens2[key]) return;
++  Object.defineProperty(exports, key, {
++    enumerable: true,
++    get: function get() {
++      return _ens2[key];
++    }
++  });
++});
++
++var _utils = require("./utils");
++
++Object.keys(_utils).forEach(function (key) {
++  if (key === "default" || key === "__esModule") return;
++  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
++  if (key in exports && exports[key] === _utils[key]) return;
++  Object.defineProperty(exports, key, {
++    enumerable: true,
++    get: function get() {
++      return _utils[key];
 +    }
 +  });
 +});
@@ -2526,7 +3803,7 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +              registryAddress: ensAddress
 +            });
 +            _context.next = 11;
-+            return (0, _registrar.setupRegistrar)(ens.registryAddress);
++            return (0, _registrar.setupRegistrar)(ens.registryAddress, ens.nameWrapperAddress);
 +
 +          case 11:
 +            registrar = _context.sent;
@@ -2554,14 +3831,14 @@ index 0000000000000000000000000000000000000000..0ccb542e9d7cedfb98cac9151ff04a9f
 +}
 \ No newline at end of file
 diff --git a/package.json b/package.json
-index 0076ee6b8c6b63197ad89bb1d0e578a627e2e9ed..9fd5276dd6bff3b1d985c4d293ea651b55151bd6 100644
+index 0076ee6b8c6b63197ad89bb1d0e578a627e2e9ed..6cca056d109ed74a49339cce476a363ec4f2fd80 100644
 --- a/package.json
 +++ b/package.json
 @@ -1,15 +1,15 @@
  {
    "name": "@ensdomains/ui",
 -  "version": "3.3.14",
-+  "version": "3.3.12",
++  "version": "3.3.16",
    "description": "UI components and reusable code",
 -  "main": "src/index.js",
 -  "files": [
@@ -2573,7 +3850,7 @@ index 0076ee6b8c6b63197ad89bb1d0e578a627e2e9ed..9fd5276dd6bff3b1d985c4d293ea651b
      "test": "node_modules/.bin/jest --verbose",
      "test:dev": "node_modules/.bin/jest --watch --verbose",
 -    "build": "babel src -d dist --ignore src/**/*.test.js,**/__tests__/**,src/testing-utils",
-+    "build": "rm -rf dist/* && yarn build:ts && yarn build:babel && cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/ && cp yarn.lock dist/",
++    "build": "rm -rf dist/* && yarn build:ts && yarn build:babel && cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/ && cp yarn.lock dist/ && cp -r src/abis dist/abis",
 +    "build:ts": "tsc",
 +    "build:babel": "babel src -d dist --ignore src/**/*.test.js,**/__tests__/**,src/testing-utils",
      "prepublishOnly": "yarn build",
@@ -2596,7 +3873,7 @@ index 0076ee6b8c6b63197ad89bb1d0e578a627e2e9ed..9fd5276dd6bff3b1d985c4d293ea651b
      "@ensdomains/content-hash": "^2.5.7",
      "@ensdomains/contracts": "^0.0.1",
      "@ensdomains/dnsprovejs": "^0.4.1",
-@@ -59,11 +60,11 @@
+@@ -59,11 +60,10 @@
      "bs58": "^4.0.1",
      "cross-fetch": "^3.0.2",
      "dns-packet": "^5.2.1",
@@ -2608,8 +3885,7 @@ index 0076ee6b8c6b63197ad89bb1d0e578a627e2e9ed..9fd5276dd6bff3b1d985c4d293ea651b
 +    "js-sha3": "^0.8.0"
 +  },
 +  "peerDependencies": {
-+    "ethers": "^",
-+    "lodash": "^"
++    "ethers": "^"
    },
    "prettier": {
      "semi": false,
@@ -2670,24 +3946,26 @@ index 0000000000000000000000000000000000000000..543d4b0775a46b105b0e3f7485b81692
 \ No newline at end of file
 diff --git a/registrar.d.ts b/registrar.d.ts
 new file mode 100644
-index 0000000000000000000000000000000000000000..bfab1da71070f1388a9b40794ace7b454dfa8fca
+index 0000000000000000000000000000000000000000..1bf3954aaa71cf25a7d973c6f93879247ba18164
 --- /dev/null
 +++ b/registrar.d.ts
-@@ -0,0 +1,102 @@
-+export function setupRegistrar(registryAddress: any): Promise<Registrar>;
+@@ -0,0 +1,106 @@
++export function setupRegistrar(registryAddress: any, nameWrapperAddress: any): Promise<Registrar>;
 +export default class Registrar {
-+    constructor({ registryAddress, ethAddress, legacyAuctionRegistrarAddress, controllerAddress, bulkRenewalAddress, provider }: {
++    constructor({ registryAddress, ethAddress, legacyAuctionRegistrarAddress, controllerAddress, bulkRenewalAddress, nameWrapperAddress, provider }: {
 +        registryAddress: any;
 +        ethAddress: any;
 +        legacyAuctionRegistrarAddress: any;
 +        controllerAddress: any;
 +        bulkRenewalAddress: any;
++        nameWrapperAddress: any;
 +        provider: any;
 +    });
 +    permanentRegistrar: import("ethers").Contract;
 +    permanentRegistrarController: import("ethers").Contract;
 +    legacyAuctionRegistrar: import("ethers").Contract;
 +    registryAddress: any;
++    nameWrapperAddress: any;
 +    bulkRenewal: import("ethers").Contract;
 +    ENS: import("ethers").Contract;
 +    getAddress(name: any): Promise<any>;
@@ -2721,6 +3999,7 @@ index 0000000000000000000000000000000000000000..bfab1da71070f1388a9b40794ace7b45
 +        transferEndDate: null;
 +        isNewRegistrar: boolean;
 +        gracePeriodEndDate: null;
++        isWrapped: boolean;
 +        deedOwner: string;
 +        state: number;
 +        registrationDate: number;
@@ -2735,6 +4014,7 @@ index 0000000000000000000000000000000000000000..bfab1da71070f1388a9b40794ace7b45
 +        transferEndDate: null;
 +        isNewRegistrar: boolean;
 +        gracePeriodEndDate: null;
++        isWrapped: boolean;
 +        deedOwner: string;
 +        state: number;
 +        registrationDate: number;
@@ -2779,18 +4059,18 @@ index 0000000000000000000000000000000000000000..bfab1da71070f1388a9b40794ace7b45
 \ No newline at end of file
 diff --git a/registrar.d.ts.map b/registrar.d.ts.map
 new file mode 100644
-index 0000000000000000000000000000000000000000..ab63209ec0124f4de062ef397643f9f32ad0a6dc
+index 0000000000000000000000000000000000000000..dbaa41d2c49d5ee0c6fb7bb5fb246415be07fecf
 --- /dev/null
 +++ b/registrar.d.ts.map
 @@ -0,0 +1 @@
-+{"version":3,"file":"registrar.d.ts","sourceRoot":"","sources":["../src/registrar.js"],"names":[],"mappings":"AAkpBA,yEA6BC;AAlnBD;IACE;;;;;;;OA2CC;IANC,8CAA4C;IAC5C,wDAAgE;IAChE,kDAAoD;IACpD,qBAAsC;IACtC,uCAA8B;IAC9B,+BAAc;IAGhB,oCAMC;IAED,0DAGC;IAED;;;;;;;;;;;;;;;;;;OA+BC;IAED;;;OA0CC;IAED;;;;;;;;;;;;;;;;;;;;;;;;;;;;OAwCC;IAED,6CAMC;IAJG,iBAAiD;IAMrD,gEA4BC;IAED,+DAwBC;IAED,qDAIC;IAED,wDAOC;IAED,wCAGC;IAED,wCAGC;IAED,qEAmBC;IAED,2DASC;IAED,kDAUC;IAED,+DAmDC;IAED,2CAkBC;IAED,+CAiBC;IAED,mDAeC;IAED,sCAOC;IAED,mDAcC;IAED;;;;;;OAwBC;IAED;;OAwDC;IAED,uDA+BC;IAED,6CAYC;IAED,mDAYC;CACF"}
++{"version":3,"file":"registrar.d.ts","sourceRoot":"","sources":["../src/registrar.js"],"names":[],"mappings":"AAwpBA,kGA8BC;AAznBD;IACE;;;;;;;;OA6CC;IAPC,8CAA4C;IAC5C,wDAAgE;IAChE,kDAAoD;IACpD,qBAAsC;IACtC,wBAA4C;IAC5C,uCAA8B;IAC9B,+BAAc;IAGhB,oCAMC;IAED,0DAGC;IAED;;;;;;;;;;;;;;;;;;OA+BC;IAED;;;OA0CC;IAED;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;OA4CC;IAED,6CAMC;IAJG,iBAAiD;IAMrD,gEA4BC;IAED,+DAwBC;IAED,qDAIC;IAED,wDAOC;IAED,wCAGC;IAED,wCAGC;IAED,qEAmBC;IAED,2DASC;IAED,kDAUC;IAED,+DAmDC;IAED,2CAkBC;IAED,+CAiBC;IAED,mDAeC;IAED,sCAOC;IAED,mDAcC;IAED;;;;;;OAwBC;IAED;;OAwDC;IAED,uDA+BC;IAED,6CAYC;IAED,mDAYC;CACF"}
 \ No newline at end of file
 diff --git a/registrar.js b/registrar.js
 new file mode 100644
-index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f4125bb1da2
+index 0000000000000000000000000000000000000000..869013f06c9844962034fc442ec07aea30dee65a
 --- /dev/null
 +++ b/registrar.js
-@@ -0,0 +1,1710 @@
+@@ -0,0 +1,1718 @@
 +"use strict";
 +
 +var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2865,6 +4145,7 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +        legacyAuctionRegistrarAddress = _ref2.legacyAuctionRegistrarAddress,
 +        controllerAddress = _ref2.controllerAddress,
 +        bulkRenewalAddress = _ref2.bulkRenewalAddress,
++        nameWrapperAddress = _ref2.nameWrapperAddress,
 +        provider = _ref2.provider;
 +    (0, _classCallCheck2["default"])(this, Registrar);
 +    checkArguments({
@@ -2897,6 +4178,7 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +    this.permanentRegistrarController = permanentRegistrarController;
 +    this.legacyAuctionRegistrar = legacyAuctionRegistrar;
 +    this.registryAddress = registryAddress;
++    this.nameWrapperAddress = nameWrapperAddress;
 +    this.bulkRenewal = bulkRenewal;
 +    this.ENS = ENS;
 +  }
@@ -3149,7 +4431,8 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +                  registrant: 0,
 +                  transferEndDate: null,
 +                  isNewRegistrar: false,
-+                  gracePeriodEndDate: null
++                  gracePeriodEndDate: null,
++                  isWrapped: false
 +                };
 +
 +                if (permEntry) {
@@ -3162,6 +4445,10 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +                  if (permEntry.ownerOf) {
 +                    ret.registrant = permEntry.ownerOf;
 +                    ret.isNewRegistrar = true;
++
++                    if (permEntry.ownerOf === this.nameWrapperAddress) {
++                      ret.isWrapped = true;
++                    }
 +                  } else if (permEntry.nameExpires) {
 +                    currentTime = new Date(ret.currentBlockDate);
 +                    gracePeriodEndDate = new Date(permEntry.nameExpires.getTime() + permEntry.gracePeriod * 1000); // It is within grace period
@@ -4438,12 +5725,12 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +  return _getEthResolver.apply(this, arguments);
 +}
 +
-+function setupRegistrar(_x38) {
++function setupRegistrar(_x38, _x39) {
 +  return _setupRegistrar.apply(this, arguments);
 +}
 +
 +function _setupRegistrar() {
-+  _setupRegistrar = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee28(registryAddress) {
++  _setupRegistrar = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee28(registryAddress, nameWrapperAddress) {
 +    var provider, ENS, Resolver, ethAddress, controllerAddress, legacyAuctionRegistrarAddress, bulkRenewalAddress;
 +    return _regenerator["default"].wrap(function _callee28$(_context28) {
 +      while (1) {
@@ -4489,6 +5776,7 @@ index 0000000000000000000000000000000000000000..0670d85c38c94544de29c03c37f77f41
 +              ethAddress: ethAddress,
 +              controllerAddress: controllerAddress,
 +              bulkRenewalAddress: bulkRenewalAddress,
++              nameWrapperAddress: nameWrapperAddress,
 +              provider: provider
 +            }));
 +
@@ -9314,7 +10602,7 @@ index 0000000000000000000000000000000000000000..7f910e07a8da188866e6135dd668ddef
 \ No newline at end of file
 diff --git a/yarn.lock b/yarn.lock
 new file mode 100644
-index 0000000000000000000000000000000000000000..78c41c72e0d1286ba61fccd6c20fb003ab3cf4af
+index 0000000000000000000000000000000000000000..7bfd724768aa8fafa12ce403924c75109e71f95a
 --- /dev/null
 +++ b/yarn.lock
 @@ -0,0 +1,12992 @@
@@ -14975,7 +16263,7 @@ index 0000000000000000000000000000000000000000..78c41c72e0d1286ba61fccd6c20fb003
 +    uuid "2.0.1"
 +    xmlhttprequest "1.8.0"
 +
-+ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.17, ethers@^5.0.2, ethers@^5.0.30, ethers@^5.4.4:
++ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.17, ethers@^5.0.2, ethers@^5.0.30:
 +  version "5.4.6"
 +  resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.4.6.tgz#fe0a023956b5502c947f58e82fbcf9a73e5e75b6"
 +  integrity sha512-F7LXARyB/Px3AQC6/QKedWZ8eqCkgOLORqL4B/F0Mag/K+qJSFGqsR36EaOZ6fKg3ZonI+pdbhb4A8Knt/43jQ==

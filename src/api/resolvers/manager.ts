@@ -200,6 +200,7 @@ async function getRegistrarEntry(name: any) {
     highestBid,
     expiryTime,
     isNewRegistrar,
+    isWrapped,
     available,
   } = entry;
 
@@ -218,6 +219,7 @@ async function getRegistrarEntry(name: any) {
     registrant,
     deedOwner,
     isNewRegistrar: !!isNewRegistrar,
+    isWrapped: !!isWrapped,
     available,
     expiryTime: expiryTime || null,
   };
@@ -402,6 +404,7 @@ const resolvers = {
             expiryTime: null,
             isNewRegistrar: null,
             isDNSRegistrar: null,
+            isWrapped: null,
             dnsOwner: null,
             deedOwner: null,
             registrant: null,
@@ -433,6 +436,7 @@ const resolvers = {
           expiryTime: null,
           isNewRegistrar: null,
           isDNSRegistrar: null,
+          isWrapped: null,
           dnsOwner: null,
           deedOwner: null,
           registrant: null,
