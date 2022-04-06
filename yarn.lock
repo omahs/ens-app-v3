@@ -3567,6 +3567,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/eslint-plugin-next@npm:^12.1.4":
+  version: 12.1.4
+  resolution: "@next/eslint-plugin-next@npm:12.1.4"
+  dependencies:
+    glob: 7.1.7
+  checksum: 6908d3ea066cc31a2353a198eb019bccb1158f032df8607568bb5ca17f84d271871e916e426f981eab08f2dbbc3df7a0ab00de2a8f14ed323492417e4f9d7903
+  languageName: node
+  linkType: hard
+
 "@next/swc-android-arm64@npm:12.0.10":
   version: 12.0.10
   resolution: "@next/swc-android-arm64@npm:12.0.10"
@@ -9765,13 +9774,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"confusing-browser-globals@npm:^1.0.7":
-  version: 1.0.11
-  resolution: "confusing-browser-globals@npm:1.0.11"
-  checksum: 3afc635abd37e566477f610e7978b15753f0e84025c25d49236f1f14d480117185516bdd40d2a2167e6bed8048641a9854964b9c067e3dcdfa6b5d0ad3c3a5ef
-  languageName: node
-  linkType: hard
-
 "connect@npm:^3.6.2":
   version: 3.7.0
   resolution: "connect@npm:3.7.0"
@@ -11384,6 +11386,7 @@ __metadata:
     "@gnosis.pm/safe-apps-sdk": ^6.2.0
     "@myetherwallet/mewconnect-web-client": ^2.2.0-beta.16
     "@next/bundle-analyzer": ^12.0.10
+    "@next/eslint-plugin-next": ^12.1.4
     "@portis/web3": ^4.0.6
     "@svgr/webpack": ^6.2.1
     "@testing-library/jest-dom": ^5.16.1
@@ -11408,7 +11411,6 @@ __metadata:
     cypress: ^8.6.0
     eslint: 7.32.0
     eslint-config-airbnb: ^18.2.1
-    eslint-config-airbnb-base: 14.0.0
     eslint-config-airbnb-typescript: ^14.0.1
     eslint-config-next: ^11.1.2
     eslint-config-prettier: ^8.3.0
@@ -11697,20 +11699,6 @@ __metadata:
     escodegen: bin/escodegen.js
     esgenerate: bin/esgenerate.js
   checksum: 5aa6b2966fafe0545e4e77936300cc94ad57cfe4dc4ebff9950492eaba83eef634503f12d7e3cbd644ecc1bab388ad0e92b06fd32222c9281a75d1cf02ec6cef
-  languageName: node
-  linkType: hard
-
-"eslint-config-airbnb-base@npm:14.0.0":
-  version: 14.0.0
-  resolution: "eslint-config-airbnb-base@npm:14.0.0"
-  dependencies:
-    confusing-browser-globals: ^1.0.7
-    object.assign: ^4.1.0
-    object.entries: ^1.1.0
-  peerDependencies:
-    eslint: ^5.16.0 || ^6.1.0
-    eslint-plugin-import: ^2.18.2
-  checksum: 136596aeccbe453dacce77384178154c4caf5da5d37a90e15ec80d46e113e3bbd3c6db11cd2fe8f1a615a00071194bae5ea5810377897fa7c277c60da2fbc461
   languageName: node
   linkType: hard
 
@@ -20469,7 +20457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object.entries@npm:^1.1.0, object.entries@npm:^1.1.2, object.entries@npm:^1.1.4":
+"object.entries@npm:^1.1.2, object.entries@npm:^1.1.4":
   version: 1.1.5
   resolution: "object.entries@npm:1.1.5"
   dependencies:
