@@ -73,7 +73,6 @@ export const SearchInput = ({
     if (!initial) {
       setSearchedVal(inputVal, _setSearchedVal)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputVal])
 
   const handleSearch = () =>

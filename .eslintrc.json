@@ -1,11 +1,15 @@
 {
   "root": true,
+  // Why next/core-web-vitals was replaced with plugin:@next/next/recommened
+  // https://github.com/ijsto/eslint-config/issues/16
   "extends": [
-    "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    // "plugin:react/recommended",
+    // "plugin:react-hooks/recommended",
+    "plugin:@next/next/recommended"
   ],
   "plugins": ["testing-library", "@typescript-eslint", "prettier", "jest"],
   "parser": "@typescript-eslint/parser",

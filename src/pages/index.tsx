@@ -1,10 +1,12 @@
 import { SearchInput } from '@app/components/SearchInput'
+import Tooltip from '@app/components/Tooltip/Tooltip'
 import { Basic } from '@app/layouts/Basic'
 import mq from '@app/mediaQuery'
 import { Box, Stack, Typography, vars } from '@ensdomains/thorin'
 import type { NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const GradientTitle = styled.h1`
@@ -31,8 +33,21 @@ const SubtitleWrapper = styled(Box)`
   margin-bottom: ${vars.space['3']};
 `
 
+const TooltipButton = styled.div<{ open: boolean }>`
+  color: ${(props) => (props.open ? 'black' : 'gray')};
+  border-color: ${(props) => (props.open ? 'black' : 'gray')};
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+`
+
 const Home: NextPage = () => {
   const { t } = useTranslation('common')
+
+  const [toolTipOpen, setToolTipOpen] = useState(false)
 
   return (
     <Basic>
@@ -53,6 +68,22 @@ const Home: NextPage = () => {
           <SearchInput />
         </Stack>
       </Box>
+      <Tooltip
+        linkText="Read More"
+        linkUrl="#"
+        message={
+          <span>
+            The <b>Manager</b> of a name has the ability to edit the name&apos;s
+            records. The <b>Owner</b> or Manager can change this record at any
+            time.
+          </span>
+        }
+        placement="top-end"
+        onOpenChange={(_open) => setToolTipOpen(_open)}
+      >
+        <TooltipButton open={toolTipOpen}>Manager</TooltipButton>
+      </Tooltip>
+      <div style={{ height: '1000px' }} />
     </Basic>
   )
 }

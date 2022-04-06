@@ -1,6 +1,6 @@
 {
   "name": "ens-app-v2",
-  "version": "0.1.112",
+  "version": "0.1.113",
   "workspaces": [
     "test-environment"
   ],
@@ -42,6 +42,8 @@
     "@ensdomains/thorin": "file:.yalc/@ensdomains/thorin",
     "@ensdomains/ui": "patch:@ensdomains/ui@3.3.14#./patches/@ensdomains/ui.patch",
     "@ensdomains/web3modal": "github:ensdomains/web3modal#head=redesign&commit=a23ccae4cb5bcaf75ebddc628c71cd93a8b87847",
+    "@floating-ui/react-dom": "^0.6.1",
+    "@floating-ui/react-dom-interactions": "^0.0.15",
     "@gnosis.pm/safe-apps-provider": "^0.9.3",
     "@gnosis.pm/safe-apps-sdk": "^6.2.0",
     "@myetherwallet/mewconnect-web-client": "^2.2.0-beta.16",
@@ -76,6 +78,7 @@
   "devDependencies": {
     "@ensdomains/cypress-metamask": "patch:@ensdomains/cypress-metamask@https://github.com/ensdomains/cypress-metamask.git#./patches/@ensdomains/cypress-metamask.patch",
     "@next/bundle-analyzer": "^12.0.10",
+    "@next/eslint-plugin-next": "^12.1.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
@@ -95,7 +98,6 @@
     "cypress": "^8.6.0",
     "eslint": "7.32.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
@@ -123,7 +125,7 @@
     "wrtc": "https://registry.npmjs.org/@koush/wrtc/-/wrtc-0.5.2.tgz",
     "bn.js": "npm:bn.js@^5.2.0"
   },
-  "packageManager": "yarn@3.1.1",
+  "packageManager": "yarn@3.2.0",
   "dependenciesMeta": {
     "@ensdomains/cypress-metamask@1.1.0-development": {
       "unplugged": true
