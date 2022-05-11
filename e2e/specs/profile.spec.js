@@ -31,4 +31,18 @@ describe('Profile', () => {
       timeout: 25000,
     }).should('has.text', '0x866...95eEE')
   })
+  it('should allow user to search profile pt 2', () => {
+    cy.visit('/')
+    cy.contains('Connect').click()
+    cy.contains('MetaMask').click()
+
+    cy.get('[placeholder="Search for a name"]').type('jefflau')
+    cy.get('[data-testid="search-button"]', {
+      timeout: 100000,
+    }).click()
+
+    cy.get('[data-testid="address-profile-button-eth"]', {
+      timeout: 25000,
+    }).should('has.text', '0x866...95eEE')
+  })
 })
