@@ -36,13 +36,13 @@ describe('Profile', () => {
     cy.contains('Connect').click()
     cy.contains('MetaMask').click()
 
-    cy.get('[placeholder="Search for a name"]').type('jefflau')
+    cy.get('[placeholder="Search for a name"]').type('matoken')
     cy.get('[data-testid="search-button"]', {
       timeout: 100000,
     }).click()
 
     cy.get('[data-testid="address-profile-button-eth"]', {
       timeout: 25000,
-    }).should('has.text', '0x866...95eEE')
+    }).should('has.text', '0xfFD...45df5')
   })
 })
