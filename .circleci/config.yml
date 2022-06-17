@@ -1,0 +1,48 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  say-hello:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    # machine: # executor type
+    #   image: ubuntu-2004:202010-01
+    macos:
+      xcode: 12.5.1
+    resource_class: macos.x86.medium.gen2
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      - run:
+          command: 'mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew'
+      - run:
+          command: 'eval "$(homebrew/bin/brew shellenv)"'
+      - run:
+          command: 'brew update --force --quiet'
+      - run:
+          command: 'chmod -R go-w "$(brew --prefix)/share/zsh"'
+      - run:
+          command: 'brew install node'
+      - run:
+          command: 'brew install docker'
+      - run:
+          command: 'brew install docker-compose'
+      - run:
+          command: 'open -a docker'
+      - run:
+          name: 'yarn install'
+          command: 'yarn'
+      - run:
+          name: 'run e2e tests'
+          command: 'yarn e2e:ci'
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
