@@ -1,17 +1,29 @@
+diff --git a/commands/metamask.js b/commands/metamask.js
+index e2af956145b2eea1e9df160f4366a6a112191eeb..6e24a83687d55ad908d179e87f63a14bb40843a3 100644
+--- a/commands/metamask.js
++++ b/commands/metamask.js
+@@ -599,6 +599,7 @@ module.exports = {
+     await puppeteer.init();
+     await puppeteer.assignWindows();
+     await puppeteer.assignActiveTabName('metamask');
++    await puppeteer.metamaskWindow().reload();
+     await puppeteer.metamaskWindow().waitForTimeout(1000);
+     if (
+       (await puppeteer.metamaskWindow().$(unlockPageElements.unlockPage)) ===
 diff --git a/launcher.js b/launcher.js
-index 9a2df926cf442f1e14f58f6fed07c643eebb680a..2519ad1971507d080b06428b5e8f3f1817d0cfd7 100644
+index 9a2df926cf442f1e14f58f6fed07c643eebb680a..b3a205134c47ec51bf98fe0b1e1dc8685cdad8b4 100644
 --- a/launcher.js
 +++ b/launcher.js
-@@ -67,6 +67,9 @@ const launcher = {
-     if (arguments_.parallel) {
-       defaultArguments.push('--parallel');
+@@ -73,6 +73,9 @@ const launcher = {
+     if (arguments_.tag) {
+       defaultArguments.push(`--tag=${arguments_.tag}`);
      }
 +    if (arguments_.ciBuildId) {
 +      defaultArguments.push(`--ci-build-id=${arguments_.ciBuildId}`);
 +    }
-     if (arguments_.group) {
-       defaultArguments.push(`--group=${arguments_.group}`);
-     }
+ 
+     const runOptions = await cypress.cli.parseRunArguments(defaultArguments);
+     const results = await cypress.run(runOptions);
 diff --git a/synpress.js b/synpress.js
 index b407e78daeba1f1663af59ff22bab8dfc1a0c5a7..c99c2362755935750bed963136de71a63327d237 100755
 --- a/synpress.js

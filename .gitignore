@@ -69,3 +69,5 @@ yarn-error.log*
 .sentryclirc
 
 .dev.vars
+
+/docker-compose.yml

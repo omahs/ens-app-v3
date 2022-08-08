@@ -24,7 +24,7 @@
     "test": "jest --env=./custom-test-env.js",
     "test:watch": "jest --env=./custom-test-env.js --watch",
     "test:coverage": "jest --env=./custom-test-env.js --coverage",
-    "synpress:start": "synpress run -cf ./synpress.json",
+    "synpress:start": "CYPRESS_SKIP_RESOURCES_WAIT=true synpress run -cf ./cypress.config.js",
     "synpress:local": "synpress run -ne -cf ./synpress.json",
     "synpress:stateful": "SECRET_WORDS=\"test test test test test test test test test test test junk\" NETWORK_NAME=mainnet synpress run -cf ./synpress-stateful.json",
     "synpress:ci": "pnpm synpress:start --record --key aab18385-26dc-4b7c-8631-e91bc79f2ab2",
@@ -90,7 +90,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@openzeppelin/contracts": "^4.5.0",
     "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@synthetixio/synpress": "1.2.0",
+    "@synthetixio/synpress": "^1.2.0",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -164,11 +164,11 @@
       "bn.js": "npm:bn.js@^5.2.0",
       "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@0.3.0-beta.13",
       "@next/swc-linux-x64-gnu": "12.1.4",
-      "cypress": "9.5.3"
+      "cypress": "^10.3.0"
     },
     "patchedDependencies": {
       "@rainbow-me/rainbowkit@0.3.3": "patches/@rainbow-me/rainbowkit.patch",
-      "@synthetixio/synpress@1.2.0": "patches/@synthetixio/synpress.patch"
+      "@synthetixio/synpress@1.2.0": "patches/@synthetixio__synpress@1.2.0.patch"
     }
   }
 }
