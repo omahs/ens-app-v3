@@ -13,7 +13,7 @@ describe('Set Primary Name', () => {
       it('should show primary name action in profile dropdown', () => {
         cy.visit('/profile/other-eth-record.eth')
         connectFromExisting()
-        cy.findByTestId('profile-actions').click()
+        cy.findByTestId('profile-actions').click({ force: true })
         cy.findByText('Set as primary name').click()
       })
       it('should show steps', () => {
@@ -52,7 +52,7 @@ describe('Set Primary Name', () => {
       it('should show primary name action in profile dropdown', () => {
         cy.visit('/profile/test123.eth')
         connectFromExisting()
-        cy.findByTestId('profile-actions').click()
+        cy.findByTestId('profile-actions').click({ force: true })
         cy.findByText('Set as primary name').click()
       })
       it('should allow setting primary name', () => {

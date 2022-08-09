@@ -83,6 +83,7 @@ describe('Settings', () => {
       cy.wait(1000)
 
       cy.visit('/my/settings')
+      cy.wait(1000)
       cy.contains('Add Successful Transaction').click()
       cy.confirmMetamaskTransaction()
       cy.contains('Clear').click()
