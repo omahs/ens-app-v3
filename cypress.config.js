@@ -3,6 +3,7 @@ const { defineConfig } = require('cypress')
 const setupPlugins = require('@synthetixio/synpress/plugins')
 
 module.exports = defineConfig({
+  projectId: '4zmgdz',
   userAgent: 'synpress',
   retries: {
     runMode: 0,
