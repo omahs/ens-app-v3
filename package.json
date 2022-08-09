@@ -90,7 +90,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@openzeppelin/contracts": "^4.5.0",
     "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@synthetixio/synpress": "^1.2.0",
+    "@synthetixio/synpress": "github:refinableco/synpress#cypress-12",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -168,7 +168,7 @@
     },
     "patchedDependencies": {
       "@rainbow-me/rainbowkit@0.3.3": "patches/@rainbow-me/rainbowkit.patch",
-      "@synthetixio/synpress@1.2.0": "patches/@synthetixio__synpress@1.2.0.patch"
+      "@synthetixio/synpress@1.2.1-beta.1": "patches/@synthetixio__synpress@1.2.1-beta.1.patch"
     }
   }
 }
