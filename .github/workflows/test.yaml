@@ -36,9 +36,9 @@ jobs:
           Xvfb :20 -screen 0 1920x1080x16 &
           sleep 1 &&
           DISPLAY=:20 fluxbox -log /tmp/fluxbox.log &
-          'parallel --lb --halt now,success=1,fail=1 ::: \
+          parallel --lb --halt now,success=1,fail=1 ::: \
           "pnpm dev" \
-          "pnpm wait-on http://localhost:3000 && DISPLAY=:20 pnpm synpress:ci:stateful --parallel --ci-build-id ${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"'
+          "pnpm wait-on http://localhost:3000 && DISPLAY=:20 pnpm synpress:ci:stateful --parallel --ci-build-id ${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
         env:
           NEXT_PUBLIC_GRAPH_URI: https://api.thegraph.com/subgraphs/name/tateb/enssubdomaincount
 
