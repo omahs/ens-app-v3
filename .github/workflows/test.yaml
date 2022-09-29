@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [1, 2]
+        node-version: [1]
 
     steps:
       - uses: actions/checkout@v3
@@ -27,17 +27,6 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-
-      - run: pnpm rebuild -r
-
-      - name: Download build
-        id: download
-        uses: actions/download-artifact@v3
-        with:
-          name: stateful-build
-
-      - name: Untar files
-        run: tar -xvf stateful-build.tar
 
       - name: Install window server
         run: sudo apt-get install -y fluxbox
