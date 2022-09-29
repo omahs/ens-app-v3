@@ -7,7 +7,6 @@ env:
 
 jobs:
   stateful:
-    needs: build
     timeout-minutes: 10
     runs-on: ubuntu-latest
     strategy:
