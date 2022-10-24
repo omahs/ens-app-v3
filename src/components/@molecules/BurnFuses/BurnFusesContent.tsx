@@ -181,6 +181,7 @@ const BurnFusesContent = ({ fuseData, onDismiss, onSubmit, canUnsetFuse = false 
   const { t: tc } = useTranslation()
   const [_fuseData, setFuseData] = useState<SelectableFuses>(defaultSelectableFuses)
   const [fuseSelected, setFuseSelected] = useState<Partial<SelectableFuses>>(defaultSelectableFuses)
+  const [view, setView] = useState<'select' | 'confirm'>('select')
 
   const handleBurnClick = (permission: keyof FuseObj) => {
     const nextFuseSelected = { ...fuseSelected } as FuseObj
@@ -226,47 +227,69 @@ const BurnFusesContent = ({ fuseData, onDismiss, onSubmit, canUnsetFuse = false 
 
   return (
     <FusesContainer>
-      <Typography weight="bold" variant="extraLarge">
-        {t('fuses.burnFormTitle')}
-      </Typography>
-      {!_fuseData.CANNOT_UNWRAP && !fuseSelected.CANNOT_UNWRAP ? (
+      {view === 'select' ? (
         <>
-          <Spacer $height="1" />
-          <Helper type="info" style={{ textAlign: 'center' }}>
-            <Typography>{t('fuses.info')}</Typography>
-          </Helper>
+          <Typography weight="bold" variant="extraLarge">
+            {t('fuses.burnFormTitle')}
+          </Typography>
+          {!_fuseData.CANNOT_UNWRAP && !fuseSelected.CANNOT_UNWRAP ? (
+            <>
+              <Spacer $height="1" />
+              <Helper type="info" style={{ textAlign: 'center' }}>
+                <Typography>{t('fuses.info')}</Typography>
+              </Helper>
+            </>
+          ) : (
+            ''
+          )}
+          <Spacer $height="4" />
+          <BurnButtonsContainer>
+            {Object.entries(_fuseData).map(([key, value]) => (
+              <BurnButton
+                {...{
+                  permission: key as keyof FuseObj,
+                  isBurned: !!value && !canUnsetFuse,
+                  handleBurnClick,
+                  isSelected: !!fuseSelected[key as keyof SelectableFuses],
+                }}
+              />
+            ))}
+          </BurnButtonsContainer>
+          <Spacer $height="6" />
+          <ButtonsContainer>
+            <Button shadowless tone="grey" variant="secondary" onClick={onDismiss}>
+              {tc('action.cancel')}
+            </Button>
+            <Button
+              disabled={canContinue(_fuseData, fuseSelected, canUnsetFuse)}
+              onClick={() => setView('confirm')}
+              tone="red"
+              data-testid="burn-form-continue"
+              shadowless
+            >
+              {canUnsetFuse ? tc('action.confirm') : tc('action.burnSelected')}
+            </Button>
+          </ButtonsContainer>
         </>
       ) : (
-        ''
+        <>
+          <Helper type="error">Sopmething</Helper>
+          <ButtonsContainer>
+            <Button shadowless tone="grey" variant="secondary" onClick={onDismiss}>
+              {tc('action.cancel')}
+            </Button>
+            <Button
+              disabled={canContinue(_fuseData, fuseSelected, canUnsetFuse)}
+              onClick={_onSubmit}
+              tone="red"
+              data-testid="burn-form-continue"
+              shadowless
+            >
+              {canUnsetFuse ? tc('action.confirm') : tc('action.burnSelected')}
+            </Button>
+          </ButtonsContainer>
+        </>
       )}
-      <Spacer $height="4" />
-      <BurnButtonsContainer>
-        {Object.entries(_fuseData).map(([key, value]) => (
-          <BurnButton
-            {...{
-              permission: key as keyof FuseObj,
-              isBurned: !!value && !canUnsetFuse,
-              handleBurnClick,
-              isSelected: !!fuseSelected[key as keyof SelectableFuses],
-            }}
-          />
-        ))}
-      </BurnButtonsContainer>
-      <Spacer $height="6" />
-      <ButtonsContainer>
-        <Button shadowless tone="grey" variant="secondary" onClick={onDismiss}>
-          {tc('action.cancel')}
-        </Button>
-        <Button
-          disabled={canContinue(_fuseData, fuseSelected, canUnsetFuse)}
-          onClick={_onSubmit}
-          tone="red"
-          data-testid="burn-form-continue"
-          shadowless
-        >
-          {canUnsetFuse ? tc('action.confirm') : tc('action.burnSelected')}
-        </Button>
-      </ButtonsContainer>
     </FusesContainer>
   )
 }
