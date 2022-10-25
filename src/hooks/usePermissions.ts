@@ -5,11 +5,32 @@ import { useBasicName } from './useBasicName'
 import { useGetWrapperData } from './useGetWrapperData'
 import { useHasSubnames } from './useHasSubnames'
 
+type Permissions = {
+  // Ownership permissions
+  canTransfer: boolean
+  canTransferRegistrant: boolean
+  canTransferOwner: boolean
+  canDelete: boolean | string
+  canDeleteFromRegistry: boolean | string
+  canDeleteFromNameWrapper: boolean | string
+  canUnwrap: boolean
+  parentCanControl: boolean
+  canExtend: boolean
+  // Editing permissions
+  canEdit: boolean
+  canBurnFuses: boolean
+  canSetResolver: boolean
+  canSetTTL: boolean
+  canCreateSubdomain: boolean
+}
+
 export const usePermissions = (name: string) => {
   const nameParts = name?.split('.') || []
   const parent = nameParts.slice(1)?.join('.')
+  const isTLD = nameParts.length === 1
+  const isEth = nameParts[-1] === 'eth'
+  const is2LD = nameParts.length === 2
   const isSubname = nameParts.length > 2
-  const is2LDEth = nameParts.length === 2 && nameParts[1] === 'eth'
 
   const { address } = useAccount()
   const { ownerData, isWrapped } = useBasicName(name)
@@ -18,76 +39,80 @@ export const usePermissions = (name: string) => {
 
   const { ownerData: parentOwnerData, isWrapped: isParentWrapped } = useBasicName(parent)
   const { hasSubnames } = useHasSubnames(name)
-  const canDeleteSubnames = parentOwnerData?.owner === address
 
   return useMemo(() => {
-    const permissions = {
-      canEdit: false,
-      canSend: false,
-      canExtend: false,
+    const permissions: Permissions = {
+      canTransfer: false,
+      canTransferRegistrant: false,
+      canTransferOwner: false,
+      canDelete: false,
       canDeleteFromRegistry: false,
       canDeleteFromNameWrapper: false,
-      canDeleteError: '',
-      canChangeOwner: false,
-      canChangeRegistrant: false,
       canUnwrap: false,
+      parentCanControl: false,
+      canExtend: false,
+      canEdit: false,
       canBurnFuses: false,
-      canTransfer: false,
       canSetResolver: false,
       canSetTTL: false,
       canCreateSubdomain: false,
-      parentCanControl: false,
     }
 
-    if (!address || !ownerData) return permissions
+    if (isTLD || !address || !ownerData) return permissions
 
-    if (is2LDEth) permissions.canExtend = true
+    if (is2LD && isEth) permissions.canExtend = true
+
     if (address === ownerData.owner) {
-      permissions.canSend = true
-    }
-    if (address === parentOwnerData?.registrant || address === parentOwnerData?.owner) {
-      permissions.canSend = true
-    }
-    if (
-      ownerData.registrant === address ||
-      (!ownerData.registrant && ownerData.owner === address)
-    ) {
-      permissions.canSend = true
-      permissions.canChangeOwner = true
-      permissions.canChangeRegistrant = true
-    }
-    if (ownerData.owner === address) {
+      permissions.canTransfer = true
+      permissions.canTransferOwner = true
       permissions.canEdit = true
-      permissions.canChangeOwner = true
+      permissions.canSetResolver = true
+      permissions.canSetTTL = true
+      permissions.canCreateSubdomain = true
     }
 
-    if (isSubname && canDeleteSubnames && !isParentWrapped) {
-      permissions.canDeleteFromRegistry = !hasSubnames
-      permissions.canDeleteError = hasSubnames ? 'This name has subnames' : ''
-    }
-    if (isSubname && canDeleteSubnames && isParentWrapped) {
-      permissions.canDeleteFromNameWrapper = !hasSubnames
-      permissions.canDeleteError = hasSubnames ? 'This name has subnames' : ''
+    if (address === ownerData.registrant) {
+      permissions.canTransfer = true
+      permissions.canTransferRegistrant = true
+      permissions.canTransferOwner = true
     }
 
-    if (isWrapped && fuseObj && address === ownerData.owner) {
-      permissions.canUnwrap = !fuseObj.CANNOT_UNWRAP
-      permissions.canBurnFuses = !fuseObj.CANNOT_BURN_FUSES
-      permissions.canTransfer = !fuseObj.CANNOT_TRANSFER
-      permissions.canSetResolver = !fuseObj.CANNOT_SET_RESOLVER
-      permissions.canSetTTL = !fuseObj.CANNOT_SET_TTL
-      permissions.canCreateSubdomain = !fuseObj.CANNOT_CREATE_SUBDOMAIN
-      permissions.parentCanControl = !fuseObj.PARENT_CANNOT_CONTROL
+    // NOT SURE IF SHOULD INCLUDE PARENT OWNER REGISTRANT
+    if (
+      isSubname &&
+      (parentOwnerData?.owner === address || parentOwnerData?.registrant === address)
+    ) {
+      permissions.canTransfer = true
+      permissions.canTransferOwner = true
+      const canDeleteValue = hasSubnames ? 'This name has subnames' : true
+      permissions.canDeleteFromRegistry = !isParentWrapped ? canDeleteValue : false
+      permissions.canDeleteFromNameWrapper = isParentWrapped ? canDeleteValue : false
+      permissions.canDelete =
+        permissions.canDeleteFromRegistry || permissions.canDeleteFromNameWrapper
     }
+
+    if (!isWrapped) return permissions
+
+    permissions.canTransfer = permissions.canTransfer && !!fuseObj && !fuseObj?.CANNOT_TRANSFER
+    permissions.canDelete = permissions.canDelete && !!fuseObj && !fuseObj?.PARENT_CANNOT_CONTROL
+    permissions.canUnwrap = ownerData.owner === address && !!fuseObj && !fuseObj?.CANNOT_UNWRAP
+    permissions.parentCanControl = !!fuseObj && !fuseObj?.PARENT_CANNOT_CONTROL
+    permissions.canBurnFuses = permissions.canEdit && !!fuseObj && !fuseObj.CANNOT_BURN_FUSES
+    permissions.canSetResolver =
+      permissions.canSetResolver && !!fuseObj && !fuseObj.CANNOT_SET_RESOLVER
+    permissions.canSetTTL = permissions.canSetTTL && !!fuseObj && !fuseObj.CANNOT_SET_TTL
+    permissions.canCreateSubdomain =
+      !!fuseObj && permissions.canCreateSubdomain && !fuseObj.CANNOT_CREATE_SUBDOMAIN
 
     return permissions
   }, [
+    isTLD,
+    is2LD,
+    isEth,
+    isSubname,
     address,
     ownerData,
     parentOwnerData,
-    is2LDEth,
-    isSubname,
-    canDeleteSubnames,
     hasSubnames,
     isParentWrapped,
     fuseObj,
