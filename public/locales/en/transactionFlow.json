@@ -81,7 +81,8 @@
             "ipfs": "ipfs://...",
             "skynet": "sia://...",
             "arweave": "arweave://...",
-            "swarm": "bzz://..."
+            "swarm": "bzz://...",
+            "onion": "onion3://..."
           }
         },
         "other": {
@@ -144,6 +145,10 @@
       "title": "Transfer Profile",
       "message1": "Before upgrading, you can transfer your current profile if you'd like, otherwise it will be reset when you upgrade.",
       "message2": "Would you like to transfer your current profile?"
+    },
+    "unknownLabels": {
+      "title": "Confirm your name",
+      "subtitle": "Some of the labels in your name aren't known. Please enter them to continue."
     }
   },
   "transaction": {
@@ -161,7 +166,13 @@
       "title": "The edits you want to save to your profile require that you upgrade your resolver.",
       "link": "Learn more about resolver upgrades",
       "warning": "Note that if you cancel this at any point your changes will not be saved."
+    },
+    "syncManager": {
+      "description": "Syncing the manager will make you the new manager of this name. The current manager <b>({{manager}})</b> will no longer be able to make changes.",
+      "wrappedWarning": "Syncing the manager will also unwrap this name. This will burn the NFT and reset any permissions."
     }
+  },
+  "errors": {
+    "duplicateKey": "{{value}} is a duplicate key"
   }
-
 }

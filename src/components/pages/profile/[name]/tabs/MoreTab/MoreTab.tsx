@@ -4,6 +4,7 @@ import { CacheableComponent } from '@app/components/@atoms/CacheableComponent'
 import { useNameDetails } from '@app/hooks/useNameDetails'
 import useOwners from '@app/hooks/useOwners'
 import { useSelfAbilities } from '@app/hooks/useSelfAbilities'
+import { deleteProperty } from '@app/utils/utils'
 
 import Fuses from './Fuses'
 import Miscellaneous from './Miscellaneous'
@@ -54,6 +55,7 @@ const MoreTab = ({ name, nameDetails, selfAbilities }: Props) => {
         owners={owners}
         canSend={selfAbilities.canSend}
         isCachedData={basicIsCachedData}
+        isWrapped={isWrapped}
       />
       {(name.endsWith('.eth') || isWrapped) && <Token isWrapped={isWrapped} name={name} />}
       <Resolver
@@ -62,11 +64,14 @@ const MoreTab = ({ name, nameDetails, selfAbilities }: Props) => {
         isCachedData={profileIsCachedData}
         resolverAddress={profile?.resolverAddress}
       />
-      {wrapperData && (
+      {isWrapped && wrapperData && (
         <Fuses
           canEdit={selfAbilities.canEdit}
           name={name}
-          fuseObj={wrapperData.fuseObj}
+          fuseObj={{
+            ...deleteProperty('unnamed', wrapperData.child),
+            ...deleteProperty('unnamed', wrapperData.parent),
+          }}
           isCachedData={basicIsCachedData}
         />
       )}

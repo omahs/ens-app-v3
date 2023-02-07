@@ -6,7 +6,6 @@ import { useAccount } from 'wagmi'
 
 import { Dialog, Helper, mq } from '@ensdomains/thorin'
 
-import { baseFuseObj } from '@app/components/@molecules/BurnFuses/BurnFusesContent'
 import { useContractAddress } from '@app/hooks/useContractAddress'
 import { useNameDetails } from '@app/hooks/useNameDetails'
 import { usePrimary } from '@app/hooks/usePrimary'
@@ -17,6 +16,7 @@ import { Content } from '@app/layouts/Content'
 import { useTransactionFlow } from '@app/transaction-flow/TransactionFlowProvider'
 import { isLabelTooLong } from '@app/utils/utils'
 
+import { ProfileRecord } from '../../../../../constants/profileRecordOptions'
 import Complete from './steps/Complete'
 import Info, { PaymentMethod } from './steps/Info'
 import Pricing from './steps/Pricing/Pricing'
@@ -96,11 +96,8 @@ const Registration = ({ nameDetails, isLoading }: Props) => {
       dispatch({
         name: 'setProfileData',
         payload: {
-          records: {
-            coinTypes: [{ key: 'ETH', value: address! } as any],
-            clearRecords: resolverExists,
-          },
-          permissions: baseFuseObj,
+          records: [{ key: 'ETH', group: 'address', type: 'addr', value: address! }],
+          clearRecords: resolverExists,
           resolver: defaultResolverAddress,
         },
         selected,
@@ -114,16 +111,26 @@ const Registration = ({ nameDetails, isLoading }: Props) => {
         })
       }
     }
+
+    // If profile is in queue and reverse record is selected, make sure that eth record is included and is set to address
+    if (item.queue.includes('profile') && reverseRecord) {
+      const recordsWithoutEth = item.records.filter((record) => record.key !== 'ETH')
+      const newRecords: ProfileRecord[] = [
+        { key: 'ETH', group: 'address', type: 'addr', value: address! },
+        ...recordsWithoutEth,
+      ]
+      dispatch({ name: 'setProfileData', payload: { records: newRecords }, selected })
+    }
+
     dispatch({ name: 'increaseStep', selected })
   }
 
   const profileCallback = ({
     records,
     resolver,
-    permissions,
     back,
   }: RegistrationStepData['profile'] & BackObj) => {
-    dispatch({ name: 'setProfileData', payload: { records, resolver, permissions }, selected })
+    dispatch({ name: 'setProfileData', payload: { records, resolver }, selected })
     dispatch({ name: back ? 'decreaseStep' : 'increaseStep', selected })
   }
 
